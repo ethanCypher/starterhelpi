@@ -31,7 +31,7 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <p>Ethan Seifer, Brishna Nazari, (Shukria put your name here)</p>
+        <p>Ethan Seifer, Brishna Nazari, Shukria Muhammadi </p>
         {/* Add the home button in the header*/}
 
         <Button variant="outline-light" size="lg" className="mt-3" href="/">
