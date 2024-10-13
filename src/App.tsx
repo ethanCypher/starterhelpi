@@ -31,7 +31,13 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <p>Ethan Seifer, Brishna Nazari, Shukria Muhammadi</p>
+        <p>Ethan Seifer, Brishna Nazari, Shukria Muhammadi </p>
+        {/* Add the home button in the header*/}
+
+        <Button variant="outline-light" size="lg" className="mt-3" href="/">
+          Home
+        </Button>
+
         <a
           className="App-link"
           href="https://reactjs.org"
