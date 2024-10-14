@@ -9,6 +9,9 @@ function Home() {
       <a href="/basic_question">
         <button>Basic Questions</button>
       </a>
+      <a href="/detailed_question">
+        <button>Detailed Questions</button>
+      </a>
     </div>
   );
 }
