@@ -5,6 +5,7 @@ import { Button, Form } from "react-bootstrap";
 import Home from "./components/home";
 import BasicQuestions from "./components/basic_question";
 import { Routes, Route, Link } from "react-router-dom";
+import DetailedQuestions from "./components/detailed_question";
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
 const saveKeyData = "MYKEY";
@@ -48,6 +49,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/basic_question" element={<BasicQuestions />} />
+          <Route path="/detailed_question" element={<DetailedQuestions />} />
         </Routes>
 
         <a
