@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { Button, Form } from "react-bootstrap";
-
+import Home from "./components/home";
+import BasicQuestions from "./components/basic_question";
+import { Routes, Route, Link } from "react-router-dom";
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
 const saveKeyData = "MYKEY";
@@ -24,6 +26,7 @@ function App() {
   function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
     setKey(event.target.value);
   }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -31,12 +34,21 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <p>Ethan Seifer, Brishna Nazari, Shukria Muhammadi </p>
-        {/* Add the home button in the header*/}
+        <p>Ethan Seifer, Brishna Nazari, Shukria Muhammadi</p>
 
-        <Button variant="outline-light" size="lg" className="mt-3" href="/">
-          Home
-        </Button>
+        {/* Home navigation Button */}
+
+        <Link to="/">
+          <Button variant="outline-light" size="lg" className="mt-3">
+            Home
+          </Button>
+        </Link>
+
+        {/* Routes for the different pages */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/basic_question" element={<BasicQuestions />} />
+        </Routes>
 
         <a
           className="App-link"
@@ -47,6 +59,7 @@ function App() {
           Learn React
         </a>
       </header>
+
       <Form>
         <Form.Label>API Key:</Form.Label>
         <Form.Control
