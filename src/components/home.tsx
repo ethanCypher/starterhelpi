@@ -1,17 +1,42 @@
 import React from "react";
+import { Button, Col, Container, Row } from "react-bootstrap";
 
 function Home() {
   return (
-    <div>
-      <h1>Welcome to</h1> home page
-      <p>Click the button below to take the assessment.</p>
-      {/* Button to navigate to the assessment page */}
-      <a href="/basic_question">
-        <button>Basic Questions</button>
-      </a>
-      <a href="/detailed_question">
-        <button>Detailed Questions</button>
-      </a>
+    <div className="App-body">
+      <Container>
+        <Row>
+          <Col>
+            <div className="Button-container">
+              <h2 className="Button-title">Basic Question</h2>
+              <p className="Button-description">
+                Start with a series of basic questions to assess your knowledge.
+              </p>
+              {/* Button to navigate to the assessment page */}
+              <a href="/basic_question">
+                <Button className="custom-button" size="lg">
+                  Basic Questions
+                </Button>
+              </a>
+            </div>
+          </Col>
+
+          <Col>
+            <div className="Button-container">
+              <h2 className="Button-title">Detailed Question</h2>
+              <p className="Button-description">
+                Dive deeper into more detailed questions for a thorough
+                assessment.
+              </p>
+              <a href="/detailed_question">
+                <Button className="custom-button" size="lg">
+                  Detailed Questions
+                </Button>
+              </a>
+            </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
