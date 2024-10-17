@@ -1,5 +1,5 @@
 import "./detailed_question.css";
-import React, { useState } from "react";
+import React from "react";
 
 function DetailedQuestions() {
   return (
