@@ -32,8 +32,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         {/* Home navigation Button */}
-
-        <Link to="/">
+        <Link to="/" className="Home-button">
           <Button variant="outline-light" size="lg" className="mt-3">
             Home
           </Button>
@@ -58,7 +57,12 @@ function App() {
             onChange={changeKey}
           ></Form.Control>
           <br></br>
-          <Button className="Submit-Button" onClick={handleSubmit}>
+          <Button
+            variant="outline-light"
+            size="lg"
+            className="mt-3"
+            onClick={handleSubmit}
+          >
             Submit
           </Button>
         </Form>

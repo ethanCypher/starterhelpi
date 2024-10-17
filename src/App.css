@@ -12,13 +12,20 @@
   font-size: calc(8px + 1vmin);
   color: white;
 }
+
+.Home-button {
+  position: absolute;
+  background-color: #33c6d3;
+  top: 1000spx; /* Adjust to your desired position */
+  left: 40px; /* Use right: 10px; if you want it in the right corner */
+}
 .App-footer {
   background-color: #33c6d3;
   min-height: 5vh; /* Reduced footer height */
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: rgb(255, 255, 255);
   font-size: 12px;
 }
 
@@ -28,10 +35,20 @@
   padding: 20px;
 }
 
+.custom-button {
+  background-color: #33c6d3; /* Change to your desired color */
+  color: white; /* Change text color */
+  border: none; /* Remove border */
+}
+
+.custom-button:hover {
+  background-color: #08838e; /* Change color on hover */
+}
+
 .Button-container {
   background-color: white;
-  padding: 20px;
-  margin: 10px;
+  padding: 40px;
+  margin: 40px 10px;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -46,13 +63,4 @@
   font-size: 1rem;
   color: #666;
   margin-bottom: 15px;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
