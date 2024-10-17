@@ -6,7 +6,7 @@ function Home() {
     <div className="App-body">
       <Container>
         <Row>
-          <Col>
+          <Col className="button-container">
             <div className="Button-container">
               <h2 className="Button-title">Basic Question</h2>
               <p className="Button-description">
