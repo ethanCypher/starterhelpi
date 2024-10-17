@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "./logo.svg";
+//import logo from "./logo.svg";
 import "./App.css";
 import { Button, Form } from "react-bootstrap";
 import Home from "./components/home";
@@ -31,12 +31,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <p>Ethan Seifer, Brishna Nazari, Shukria Muhammadi</p>
-
         {/* Home navigation Button */}
 
         <Link to="/">
@@ -44,36 +38,31 @@ function App() {
             Home
           </Button>
         </Link>
+      </header>
 
-        {/* Routes for the different pages */}
+      {/* Routes for the different pages */}
+      <div className="App-body">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/basic_question" element={<BasicQuestions />} />
           <Route path="/detailed_question" element={<DetailedQuestions />} />
         </Routes>
+      </div>
 
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-
-      <Form>
-        <Form.Label>API Key:</Form.Label>
-        <Form.Control
-          type="password"
-          placeholder="Insert API Key Here"
-          onChange={changeKey}
-        ></Form.Control>
-        <br></br>
-        <Button className="Submit-Button" onClick={handleSubmit}>
-          Submit
-        </Button>
-      </Form>
+      <footer className="App-footer">
+        <Form>
+          <Form.Label>API Key:</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Insert API Key Here"
+            onChange={changeKey}
+          ></Form.Control>
+          <br></br>
+          <Button className="Submit-Button" onClick={handleSubmit}>
+            Submit
+          </Button>
+        </Form>
+      </footer>
     </div>
   );
 }
