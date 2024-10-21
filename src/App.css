@@ -33,6 +33,12 @@
   justify-content: center;
   color: rgb(255, 255, 255);
   font-size: 12%;
+
+  /* Added properties */
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
 .App-body {
