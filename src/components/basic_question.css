@@ -1,0 +1,67 @@
+.main-container {
+    display: flex;            
+    flex-direction: column;    
+    justify-content: flex-start; 
+    align-items: flex-start; 
+    border-radius: 10px;
+    background-color: rgb(161, 227, 229);
+    padding: 20px; 
+    width: 100%; 
+}
+
+
+/* .question-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center; 
+    align-items: center;    
+} */
+.question{
+    flex : 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.Button-container {
+    background-color: white;
+    padding: 40px;
+    margin: 40px 10px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+
+ 
+  
+  .dropdown {
+    position: relative;
+  }
+  
+  .dropdown-toggle {
+    width: 120%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: left;
+  }
+  
+  .checkbox-group {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 8px;
+    position: absolute;
+    width: auto;
+    min-width: 150px;
+    z-index: 1;
+    text-align: left;
+  }
+  
+  .checkbox-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+  }
