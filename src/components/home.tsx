@@ -4,9 +4,13 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 function Home() {
   return (
     <div className="App-body">
+      <div className="animated-title">
+        {/* Or use a video tag for MP4 */}
+        {<video src="/Pictures/Title.mp4" autoPlay loop muted />}
+      </div>
       <Container>
         <Row>
-          <Col className="button-container">
+          <Col>
             <div className="Button-container">
               <h2 className="Button-title">Basic Question</h2>
               <p className="Button-description">

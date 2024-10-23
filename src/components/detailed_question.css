@@ -1,10 +1,22 @@
-.question-container{
-    display: flex;
-    gap: 20px;
+.question-container{ 
+    border-radius: 10px;
+    background-color: rgb(161, 227, 229);
+    padding: 20px; 
+    width: 100%; 
 }
-
 .question{
-    flex: 1;
     display: flex;
     flex-direction: column;
+    margin-bottom: 1em;
+}
+
+label{
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
+
+textarea{
+    width: 100%;
+    min-height: 100px;
+    resize:vertical;
 }
