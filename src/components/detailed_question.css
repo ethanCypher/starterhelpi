@@ -1,3 +1,9 @@
+.question-container{ 
+    border-radius: 10px;
+    background-color: rgb(161, 227, 229);
+    padding: 20px; 
+    width: 100%; 
+}
 .question{
     display: flex;
     flex-direction: column;
