@@ -305,13 +305,13 @@ function BasicQuestions() {
               {isWorkPlace && (
                 <div className= "checkbox-group">
                   <label>
-                    <input type ="checkbox" name="workplace" value="welcome-change-and-adapt-easily." /> Welcome change and adapt easily. </label>
+                    <input type ="checkbox" name="workplace" value="welcome-change-and-adapt-easily." /> Welcome change and adapt easily </label>
                     <label>
                     <input type ="checkbox" name="workplace" value="like-to-keep-things-the-same" /> Like to keep things the same </label>
                     <label>
-                    <input type ="checkbox" name="workplace" value="find-it-hard-but-try-to-adjust." /> Find it hard but try to adjust. </label>
+                    <input type ="checkbox" name="workplace" value="find-it-hard-but-try-to-adjust." /> Find it hard but try to adjust </label>
                     <label>
-                    <input type ="checkbox" name="workplace" value="do-not-like-change-and-feel-uneasy." /> Do not like change and feel uneasy. </label>
+                    <input type ="checkbox" name="workplace" value="do-not-like-change-and-feel-uneasy." /> Do not like change and feel uneasy </label>
                     <label>
                     <input type ="checkbox" name="workplace" value="none" /> None </label>
                 </div>
