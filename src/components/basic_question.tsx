@@ -16,6 +16,7 @@ function BasicQuestions() {
   const [isActivity, setIsActivity] = useState(false);
   const [isChallenge, setIsChallenge] = useState(false);
   const [isDecision, setIsDecision] = useState(false);
+  const [isWorkPlace, steIsWorkPlace] = useState(false);
 
 
   // Toggle functions for each dropdown
@@ -57,6 +58,10 @@ function BasicQuestions() {
     setIsDecision(!isDecision);
   }
 
+  const toggleWorkPlace = () => {
+    steIsWorkPlace(!isWorkPlace);
+  }
+
 
   return (
     <div>
@@ -66,13 +71,13 @@ function BasicQuestions() {
           <label>Question 1</label>
           <div className="dropdown">
             <button className="dropdown-toggle" onClick={togglePersonalityDropdown}>
-            Which of the following describes you the most?
+            Which of these best represents your personality?
             </button>
             {isPersonalityOpen && (
               <div className="checkbox-group">
                 <label>
-                  <input type="checkbox" name="personality" value="explorer" />
-                  The Explorer
+                  <input type="checkbox" name="personality" value="Adventurer" />
+                  The Adventurer
                 </label>
                 <label>
                   <input type="checkbox" name="personality" value="planner" />
@@ -112,7 +117,7 @@ function BasicQuestions() {
           <label>Question 2</label>
           <div className="dropdown">
             <button className="dropdown-toggle" onClick={toggleTaskOrganizingDropdown}>
-            How do you prefer to organize your tasks and projects?
+            How do you typically manage your tasks and projects?
             </button>
             {isTaskOrganizingOpen && (
               <div className="checkbox-group">
@@ -164,7 +169,7 @@ function BasicQuestions() {
             </div>
           <label>Question 4</label>
           <div className= "dropdown">
-            <button className= "dropdown-toggle" onClick= {toggleFavSubject}> What is your favorite subject? </button>
+            <button className= "dropdown-toggle" onClick= {toggleFavSubject}> Which subject area do you like the most? </button>
             {isYourFavSubjectOpen && (
               <div className= "checkbox-group">
                 <label>
@@ -182,11 +187,26 @@ function BasicQuestions() {
                   <label>
                   <input type ="checkbox" name="subject" value="geography" /> Geography </label>
                   <label>
-                  <input type ="checkbox" name="subject" value="none" /> None </label>
+                  <input type ="checkbox" name="subject" value="Literature" /> Literature </label>
+                  <label>
+                  <input type ="checkbox" name="subject" value="Literature" /> Literature </label>
+                  <label>
+                  <input type ="checkbox" name="subject" value="Literature" /> Literature </label>
+                  <label>
+                  <input type ="checkbox" name="subject" value="Computer-Science" /> Computer Science </label>
+                  <label>
+                  <input type ="checkbox" name="subject" value="Economics" /> Economics </label>
+                  <label>
+                  <input type ="checkbox" name="subject" value="Psychology" /> Psychology</label>
+                  <label>
+                  <input type ="checkbox" name="subject" value="Philosophy" />Philosophy </label>
+                  <label>
+                  <input type ="checkbox" name="subject" value="Music" />Music </label>
+                  <label>
+                  <input type ="checkbox" name="subject" value="Physical-Education" />Physical Education </label>
+                  <label>
+                  <input type ="checkbox" name="subject" value="none" /> None of the above </label>
               </div>
-
-              
-
             )}
             </div>
           <label>Question 5</label>
@@ -211,9 +231,6 @@ function BasicQuestions() {
                   <label>
                   <input type ="checkbox" name="subject" value="none" /> None </label>
               </div>
-
-              
-
             )}
             </div>
           <label>Question 6</label>
@@ -280,9 +297,24 @@ function BasicQuestions() {
                     <label>
                     <input type ="checkbox" name="decision" value="none" /> None </label>
                 </div>
-  
-                
-  
+              )}
+              </div>
+            <label>Question 9</label>
+            <div className= "dropdown">
+              <button className= "dropdown-toggle" onClick= {toggleWorkPlace}> How do you respond to changes in the workplace?</button>
+              {isWorkPlace && (
+                <div className= "checkbox-group">
+                  <label>
+                    <input type ="checkbox" name="workplace" value="welcome-change-and-adapt-easily." /> Welcome change and adapt easily. </label>
+                    <label>
+                    <input type ="checkbox" name="workplace" value="like-to-keep-things-the-same" /> Like to keep things the same </label>
+                    <label>
+                    <input type ="checkbox" name="workplace" value="find-it-hard-but-try-to-adjust." /> Find it hard but try to adjust. </label>
+                    <label>
+                    <input type ="checkbox" name="workplace" value="do-not-like-change-and-feel-uneasy." /> Do not like change and feel uneasy. </label>
+                    <label>
+                    <input type ="checkbox" name="workplace" value="none" /> None </label>
+                </div>
               )}
           </div>
           <label>Which one of the following describes you the most?</label>
