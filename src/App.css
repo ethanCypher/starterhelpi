@@ -73,15 +73,19 @@
 
 .Button-container {
   display: flex;
-  justify-content: space-around; /* Evenly space the containers */
-  flex-wrap: wrap; /* Ensure containers wrap to the next line if needed */
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   background-color: white;
+  width: 50%; /* Fixed width */
+  height: 70%; /* Fixed height */
   padding: 10%;
   margin: 10%;
+  position: relative;
+  left: 20%;
   border-radius: 8%;
-  box-shadow: 0% 4% 8% rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4% 8% rgba(0, 0, 0, 0.2);
   text-align: center;
-  flex: 1 1 40%;
 }
 
 .option:hover {
