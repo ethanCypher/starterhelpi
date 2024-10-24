@@ -10,12 +10,6 @@
 }
 
 
-/* .question-container {
-    display: flex;
-    gap: 20px;
-    justify-content: center; 
-    align-items: center;    
-} */
 .question{
     flex : 1;
     display: flex;
