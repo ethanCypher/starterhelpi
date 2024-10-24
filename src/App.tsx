@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-//import logo from "./logo.svg";
 import "./App.css";
 import { Button, Form } from "react-bootstrap";
 import Home from "./components/home";
@@ -40,14 +39,15 @@ function App() {
       </header>
 
       {/* Routes for the different pages */}
-      <div className="App-body">
+      <main className="App-body">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/basic_question" element={<BasicQuestions />} />
           <Route path="/detailed_question" element={<DetailedQuestions />} />
         </Routes>
-      </div>
+      </main>
 
+      {/* Footer with API key input */}
       <footer className="App-footer">
         <Form>
           <Form.Label>API Key:</Form.Label>
