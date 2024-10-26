@@ -6,7 +6,7 @@ function Home() {
     <div className="App-body">
       <div className="animated-title">
         {/* Or use a video tag for MP4 */}
-        {<video src="public/Pictures/Title.mp4" autoPlay loop muted />}
+        {<video src="/Pictures/Title.mp4" autoPlay loop muted />}
       </div>
       <Container>
         <Row>
