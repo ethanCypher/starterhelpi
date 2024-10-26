@@ -2,6 +2,7 @@ import "./basic_question.css";
 import React, { useState } from "react";
 //import { useAccordionButton } from "react-bootstrap";
 import Dropdown from 'react-bootstrap/Dropdown'
+import { useNavigate } from "react-router-dom";
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
 
