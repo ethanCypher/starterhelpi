@@ -5,7 +5,12 @@ import { Button, Form } from "react-bootstrap";
 import Home from "./components/home";
 import BasicQuestions from "./components/basic_question";
 //import { Routes, Route, Link } from "react-router-dom";
-import { Routes, Route, Link } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import DetailedQuestions from "./components/detailed_question";
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -33,20 +38,22 @@ function App() {
     <div className="App">
       <header className="App-header">
         {/* Home navigation Button */}
-        <Link to="/" className="Home-button">
+        {/* <Navigate to="/" className="Home-button">
           <Button variant="outline-light" size="lg" className="mt-3">
             Home
           </Button>
-        </Link>
+        </Navigate> */}
       </header>
 
       {/* Routes for the different pages */}
       <div className="App-body">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/basic_question" element={<BasicQuestions />} />
-          <Route path="/detailed_question" element={<DetailedQuestions />} />
-        </Routes>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/basic_question" element={<BasicQuestions />} />
+            <Route path="/detailed_question" element={<DetailedQuestions />} />
+          </Routes>
+        </Router>
       </div>
 
       <footer className="App-footer">
