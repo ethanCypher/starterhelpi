@@ -5,12 +5,7 @@ import { Button, Form } from "react-bootstrap";
 import Home from "./components/home";
 import BasicQuestions from "./components/basic_question";
 //import { Routes, Route, Link } from "react-router-dom";
-import {
-  HashRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import DetailedQuestions from "./components/detailed_question";
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
@@ -33,16 +28,15 @@ function App() {
   function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
     setKey(event.target.value);
   }
-
   return (
     <div className="App">
       <header className="App-header">
         {/* Home navigation Button */}
-        {/* <Navigate to="/" className="Home-button">
+        {/* <Routes to="/" className="Home-button">
           <Button variant="outline-light" size="lg" className="mt-3">
             Home
           </Button>
-        </Navigate> */}
+        </Routes> */}
       </header>
 
       {/* Routes for the different pages */}
