@@ -43,20 +43,31 @@
 
 .App-body {
   background-color: #ffffff;
-  min-height: 40vh; /* Adjusted to fill the remaining space */
-  padding: 10%;
+  min-height: 100vh; /* Adjusted to fill the remaining space */
+  padding: 0;
+  background-image: url("/Users/brishna/Desktop/Projects/gitHub/starterhelpi/public/Background_picture.png"); /* Change to your image path */
+  /* background-size: cover; /* Cover the entire viewport */
+  /* background-position: center; /* Center the image */
+  /* Slim the image to the left */
+  background-size: 55% auto; /* Reduce the width to 30% of the container */
+  background-position: left center; /* Align the image to the left, centered vertically */
+
+  background-repeat: no-repeat; /* Prevent repetition */
+  background-attachment: fixed;
 }
 
 .animated-title {
   display: flex;
   justify-content: center;
   margin-bottom: 20%;
+  padding: 20%;
 }
 .animated-title video {
-  max-width: 50%;
-  height: 80vh;
+  max-width: 60%;
+  height: 90vh;
+  margin-left: 30%;
   margin-bottom: -50%;
-  margin-top: -40%;
+  margin-top: -50%;
 }
 
 .custom-button {
@@ -82,7 +93,8 @@
   padding: 10%;
   margin: 10%;
   position: relative;
-  left: 20%;
+  left: 50%;
+  bottom: 130%;
   border-radius: 8%;
   box-shadow: 0 4% 8% rgba(0, 0, 0, 0.2);
   text-align: center;
