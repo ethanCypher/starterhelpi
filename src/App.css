@@ -42,7 +42,7 @@
 }
 
 .App-body {
-  background-color: #ffffff;
+  background-color: white;
   min-height: 100vh; /* Adjusted to fill the remaining space */
   padding: 0;
   background-image: url("/public/Pictures/Background_picture.png"); /* Change to your image path */
