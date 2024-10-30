@@ -40,7 +40,7 @@ FAIL src/App.test.tsx
                 [36m<video[39m
                   [33mautoplay[39m=[32m""[39m
                   [33mloop[39m=[32m""[39m
-                  [33msrc[39m=[32m"/Pictures/Title.mp4"[39m
+                  [33msrc[39m=[32m"./Pictures/Title.mp4"[39m
                 [36m/>[39m
               [36m</div>[39m
               [36m<div[39m
@@ -164,5 +164,5 @@ All files               |   13.79 |     3.57 |      10 |   13.79 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.615 s
+Time:        2.596 s
 Ran all test suites.
