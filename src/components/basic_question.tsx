@@ -1,13 +1,22 @@
 import "./basic_question.css";
 import React, { useState } from "react";
-import Dropdown from 'react-bootstrap/Dropdown'
+//import { useAccordionButton } from "react-bootstrap";
+import Dropdown from "react-bootstrap/Dropdown";
+//import { useNavigate } from "react-router-dom";
+//import 'bootstrap/dist/css/bootstrap.min.css';
 
 function BasicQuestions() {
   // Separate state for each dropdown
   const [isPersonalityOpen, setIsPersonalityOpen] = useState(false);
   const [isTaskOrganizingOpen, setIsTaskOrganizingOpen] = useState(false);
   const [isYourFavSubjectOpen, setIsYourFavSubject] = useState(false);
-  const [selectedOption, setSelectedOption] = useState<string>('');
+  const [selectedOption, setSelectedOption] = useState<string>("");
+  const [isWorkEnviroment, setIsWorkEnviroment] = useState(false);
+  const [isMotivation, setIsMotivation] = useState(false);
+  const [isActivity, setIsActivity] = useState(false);
+  const [isChallenge, setIsChallenge] = useState(false);
+  const [isDecision, setIsDecision] = useState(false);
+  const [isWorkPlace, steIsWorkPlace] = useState(false);
 
   // Toggle functions for each dropdown
   const togglePersonalityDropdown = () => {
@@ -20,30 +29,60 @@ function BasicQuestions() {
 
   const toggleFavSubject = () => {
     setIsYourFavSubject(!isYourFavSubjectOpen);
-  }
+  };
 
   const handleSelect = (eventKey: string | null) => {
     if (eventKey) {
-      setSelectedOption(eventKey); 
+      setSelectedOption(eventKey);
     }
   };
 
+  const toggleWorkEnviroment = () => {
+    setIsWorkEnviroment(!isWorkEnviroment);
+  };
+
+  const toggleMotivation = () => {
+    setIsMotivation(!isMotivation);
+  };
+
+  const toggleActivity = () => {
+    setIsActivity(!isActivity);
+  };
+
+  const toggleChallenge = () => {
+    setIsChallenge(!isChallenge);
+  };
+
+  const toggleDecision = () => {
+    setIsDecision(!isDecision);
+  };
+
+  const toggleWorkPlace = () => {
+    steIsWorkPlace(!isWorkPlace);
+  };
 
   return (
     <div>
-      <h1>Basic Question Page</h1>
+      <h1>Basic Question</h1>
       <div className="main-container">
         <div className="question">
           <label>Question 1</label>
           <div className="dropdown">
-            <button className="dropdown-toggle" onClick={togglePersonalityDropdown}>
-            Which of the following describes you the most?
+            <button
+              className="dropdown-toggle"
+              onClick={togglePersonalityDropdown}
+            >
+              Which of these best represents your personality?
             </button>
             {isPersonalityOpen && (
               <div className="checkbox-group">
                 <label>
-                  <input type="checkbox" name="personality" value="explorer" />
-                  The Explorer
+                  <input
+                    type="checkbox"
+                    name="personality"
+                    value="Adventurer"
+                  />
+                  The Adventurer
                 </label>
                 <label>
                   <input type="checkbox" name="personality" value="planner" />
@@ -58,7 +97,11 @@ function BasicQuestions() {
                   The Leader
                 </label>
                 <label>
-                  <input type="checkbox" name="personality" value="peacemaker" />
+                  <input
+                    type="checkbox"
+                    name="personality"
+                    value="peacemaker"
+                  />
                   The Peacemaker
                 </label>
                 <label>
@@ -66,210 +109,504 @@ function BasicQuestions() {
                   The Achiever
                 </label>
                 <label>
-                  <input type="checkbox" name="personality" value="freespirit" />
+                  <input
+                    type="checkbox"
+                    name="personality"
+                    value="freespirit"
+                  />
                   The Free Spirit
                 </label>
                 <label>
                   <input type="checkbox" name="personality" value="analyst" />
                   The Analyst
                 </label>
+                <label>
+                  <input type="checkbox" name="personality" value="none" />
+                  None
+                </label>
               </div>
             )}
           </div>
           <label>Question 2</label>
           <div className="dropdown">
-            <button className="dropdown-toggle" onClick={toggleTaskOrganizingDropdown}>
-            How do you prefer to organize your tasks and projects?
+            <button
+              className="dropdown-toggle"
+              onClick={toggleTaskOrganizingDropdown}
+            >
+              How do you typically manage your tasks and projects?
             </button>
             {isTaskOrganizingOpen && (
               <div className="checkbox-group">
                 <label>
-                  <input type="checkbox" name="organizing" value="Very-organized" />
+                  <input
+                    type="checkbox"
+                    name="organizing"
+                    value="Very-organized"
+                  />
                   Very Organized
                 </label>
                 <label>
-                  <input type="checkbox" name="organizing" value="Somewhat-organized" />
+                  <input
+                    type="checkbox"
+                    name="organizing"
+                    value="Somewhat-organized"
+                  />
                   Somewhat Organized
                 </label>
                 <label>
-                  <input type="checkbox" name="organizing" value="Not-very-organized" />
+                  <input
+                    type="checkbox"
+                    name="organizing"
+                    value="Not-very-organized"
+                  />
                   Not Very Organized
                 </label>
                 <label>
-                  <input type="checkbox" name="organizing" value="Just-go-with-the-Flow" />
+                  <input
+                    type="checkbox"
+                    name="organizing"
+                    value="Just-go-with-the-Flow"
+                  />
                   Just Go with the Flow
                 </label>
                 <label>
-                  <input type="checkbox" name="organizing" value="Organized-chaos" />
+                  <input
+                    type="checkbox"
+                    name="organizing"
+                    value="Organized-chaos"
+                  />
                   Organized Chaos
+                </label>
+                <label>
+                  <input type="checkbox" name="organizing" value="none" />
+                  None
                 </label>
               </div>
             )}
           </div>
           <label>Question 3</label>
-          <div className= "dropdown">
-            <button className= "dropdown-toggle" onClick= {toggleFavSubject}> What is your favorite subject?</button>
-            {isYourFavSubjectOpen && (
-              <div className= "checkbox-group">
+          <div className="dropdown">
+            <button className="dropdown-toggle" onClick={toggleWorkEnviroment}>
+              {" "}
+              What type of work environment do you prefer?
+            </button>
+            {isWorkEnviroment && (
+              <div className="checkbox-group">
                 <label>
-                  <input type ="checkbox" name="subject" value="math" /> Math </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="Physics" /> Physics </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="Chemistry" /> Chemistry </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="biology" /> Biology </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="history" /> History </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="art" /> Art </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="geography" /> Geography </label>
+                  <input
+                    type="checkbox"
+                    name="environment"
+                    value="Office-based"
+                  />{" "}
+                  Office-based{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="environment" value="remote" />{" "}
+                  Remote{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="environment" value="out-door" />{" "}
+                  Out-door{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="environment"
+                    value="A-mix-of-all"
+                  />{" "}
+                  A mix of all{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="environment" value="none" /> None{" "}
+                </label>
               </div>
             )}
-            </div>
-          <label>What is your favorite subject?</label>
-          <div className= "dropdown">
-            <button className= "dropdown-toggle" onClick= {toggleFavSubject}> Select Option</button>
+          </div>
+          <label>Question 4</label>
+          <div className="dropdown">
+            <button className="dropdown-toggle" onClick={toggleFavSubject}>
+              {" "}
+              Which subject area do you like the most?{" "}
+            </button>
             {isYourFavSubjectOpen && (
-              <div className= "checkbox-group">
+              <div className="checkbox-group">
                 <label>
-                  <input type ="checkbox" name="subject" value="math" /> Math </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="Physics" /> Physics </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="Chemistry" /> Chemistry </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="biology" /> Biology </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="history" /> History </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="art" /> Art </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="geography" /> Geography </label>
-              </div>
-
-              
-
-            )}
-            </div>
-          <label>What is your favorite subject?</label>
-          <div className= "dropdown">
-            <button className= "dropdown-toggle" onClick= {toggleFavSubject}> Select Option</button>
-            {isYourFavSubjectOpen && (
-              <div className= "checkbox-group">
+                  <input type="checkbox" name="subject" value="math" /> Math{" "}
+                </label>
                 <label>
-                  <input type ="checkbox" name="subject" value="math" /> Math </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="Physics" /> Physics </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="Chemistry" /> Chemistry </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="biology" /> Biology </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="history" /> History </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="art" /> Art </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="geography" /> Geography </label>
-              </div>
-
-              
-
-            )}
-            </div>
-          <label>What is your favorite subject?</label>
-          <div className= "dropdown">
-            <button className= "dropdown-toggle" onClick= {toggleFavSubject}> Select Option</button>
-            {isYourFavSubjectOpen && (
-              <div className= "checkbox-group">
+                  <input type="checkbox" name="subject" value="Physics" />{" "}
+                  Physics{" "}
+                </label>
                 <label>
-                  <input type ="checkbox" name="subject" value="math" /> Math </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="Physics" /> Physics </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="Chemistry" /> Chemistry </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="biology" /> Biology </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="history" /> History </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="art" /> Art </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="geography" /> Geography </label>
-              </div>
-
-              
-
-            )}
-            </div>
-          <label>What is your favorite subject?</label>
-          <div className= "dropdown">
-            <button className= "dropdown-toggle" onClick= {toggleFavSubject}> Select Option</button>
-            {isYourFavSubjectOpen && (
-              <div className= "checkbox-group">
+                  <input type="checkbox" name="subject" value="Chemistry" />{" "}
+                  Chemistry{" "}
+                </label>
                 <label>
-                  <input type ="checkbox" name="subject" value="math" /> Math </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="Physics" /> Physics </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="Chemistry" /> Chemistry </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="biology" /> Biology </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="history" /> History </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="art" /> Art </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="geography" /> Geography </label>
+                  <input type="checkbox" name="subject" value="biology" />{" "}
+                  Biology{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="subject" value="history" />{" "}
+                  History{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="subject" value="art" /> Art{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="subject" value="geography" />{" "}
+                  Geography{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="subject" value="Literature" />{" "}
+                  Literature{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="subject" value="Literature" />{" "}
+                  Literature{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="subject" value="Literature" />{" "}
+                  Literature{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="subject"
+                    value="Computer-Science"
+                  />{" "}
+                  Computer Science{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="subject" value="Economics" />{" "}
+                  Economics{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="subject" value="Psychology" />{" "}
+                  Psychology
+                </label>
+                <label>
+                  <input type="checkbox" name="subject" value="Philosophy" />
+                  Philosophy{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="subject" value="Music" />
+                  Music{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="subject"
+                    value="Physical-Education"
+                  />
+                  Physical Education{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="subject" value="none" /> None of
+                  the above{" "}
+                </label>
               </div>
-
-              
-
             )}
-            </div>
-            <label>What is your favorite subject?</label>
-            <div className= "dropdown">
-              <button className= "dropdown-toggle" onClick= {toggleFavSubject}> Select Option</button>
-              {isYourFavSubjectOpen && (
-                <div className= "checkbox-group">
-                  <label>
-                    <input type ="checkbox" name="subject" value="math" /> Math </label>
-                    <label>
-                    <input type ="checkbox" name="subject" value="Physics" /> Physics </label>
-                    <label>
-                    <input type ="checkbox" name="subject" value="Chemistry" /> Chemistry </label>
-                    <label>
-                    <input type ="checkbox" name="subject" value="biology" /> Biology </label>
-                    <label>
-                    <input type ="checkbox" name="subject" value="history" /> History </label>
-                    <label>
-                    <input type ="checkbox" name="subject" value="art" /> Art </label>
-                    <label>
-                    <input type ="checkbox" name="subject" value="geography" /> Geography </label>
-                </div>
-  
-                
-  
-              )}
+          </div>
+          <label>Question 5</label>
+          <div className="dropdown">
+            <button className="dropdown-toggle" onClick={toggleMotivation}>
+              {" "}
+              What motivates you at work?
+            </button>
+            {isMotivation && (
+              <div className="checkbox-group">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="motivation"
+                    value="Learning-new-skills"
+                  />{" "}
+                  Learning new skills{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="motivation"
+                    value="Helping-others"
+                  />{" "}
+                  Helping others{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="motivation"
+                    value="Working-on-creative-projects"
+                  />{" "}
+                  Working on creative projects{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="motivation"
+                    value="Solving-problems"
+                  />{" "}
+                  Solving problems
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="smotivation"
+                    value="Working-with-a-team"
+                  />{" "}
+                  Working with a team{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="subject"
+                    value="Taking-on-challenges"
+                  />{" "}
+                  Taking on challenges{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="subject"
+                    value="Earning-rewards-or-recognition"
+                  />{" "}
+                  Earning rewards or recognition{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="subject" value="none" /> None{" "}
+                </label>
+              </div>
+            )}
+          </div>
+          <label>Question 6</label>
+          <div className="dropdown">
+            <button className="dropdown-toggle" onClick={toggleActivity}>
+              {" "}
+              Which of the following activities do you enjoy the most?
+            </button>
+            {isActivity && (
+              <div className="checkbox-group">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="activity"
+                    value="Working-with-technology"
+                  />{" "}
+                  Working with technology{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="activity"
+                    value="Exploring-new-places"
+                  />{" "}
+                  Exploring new places{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="activity" value="Teaching" />{" "}
+                  Teaching{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="activity"
+                    value="Building-or-fixing-things"
+                  />{" "}
+                  Building or fixing things{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="activity"
+                    value="Writing-or-storytelling"
+                  />{" "}
+                  Writing or storytelling{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="activity"
+                    value="Working-with-numbers-or-data"
+                  />{" "}
+                  Working with numbers or data{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="activity"
+                    value="Cooking-or-preparing-meals"
+                  />{" "}
+                  Cooking or preparing meals{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="activity"
+                    value="Playing-sports-or-staying-active"
+                  />{" "}
+                  Playing sports or staying active{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="activity" value="none" /> None{" "}
+                </label>
+              </div>
+            )}
+          </div>
+          <label>Question 7</label>
+          <div className="dropdown">
+            <button className="dropdown-toggle" onClick={toggleChallenge}>
+              {" "}
+              What type of challenges do you enjoy at work?
+            </button>
+            {isChallenge && (
+              <div className="checkbox-group">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="challenge"
+                    value="Solving-complex-problems"
+                  />{" "}
+                  Solving complex problems{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="challenge"
+                    value="Meeting-new-people-and-networking"
+                  />{" "}
+                  Meeting new people and networking{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="challenge"
+                    value="Creating-innovative-solutions"
+                  />{" "}
+                  Creating innovative solutions{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="challenge"
+                    value="Managing-multiple-tasks-at-once"
+                  />{" "}
+                  Managing multiple tasks at once{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="challenge" value="none" /> None{" "}
+                </label>
+              </div>
+            )}
+          </div>
+          <label>Question 8</label>
+          <div className="dropdown">
+            <button className="dropdown-toggle" onClick={toggleDecision}>
+              {" "}
+              How do you handle decision-making?
+            </button>
+            {isDecision && (
+              <div className="checkbox-group">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="decision"
+                    value="based-on-logic-and-facts"
+                  />{" "}
+                  based on logic and facts{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="decision"
+                    value="trust-my-instincts"
+                  />{" "}
+                  trust my instincts{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="decision"
+                    value="seek-advice-from-others"
+                  />{" "}
+                  seek advice from others{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="decision"
+                    value="carefully-think-through-all-choices"
+                  />{" "}
+                  carefully think through all choices{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="decision" value="none" /> None{" "}
+                </label>
+              </div>
+            )}
+          </div>
+          <label>Question 9</label>
+          <div className="dropdown">
+            <button className="dropdown-toggle" onClick={toggleWorkPlace}>
+              {" "}
+              How do you respond to changes in the workplace?
+            </button>
+            {isWorkPlace && (
+              <div className="checkbox-group">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="workplace"
+                    value="welcome-change-and-adapt-easily."
+                  />{" "}
+                  Welcome change and adapt easily{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="workplace"
+                    value="like-to-keep-things-the-same"
+                  />{" "}
+                  Like to keep things the same{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="workplace"
+                    value="find-it-hard-but-try-to-adjust."
+                  />{" "}
+                  Find it hard but try to adjust{" "}
+                </label>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="workplace"
+                    value="do-not-like-change-and-feel-uneasy."
+                  />{" "}
+                  Do not like change and feel uneasy{" "}
+                </label>
+                <label>
+                  <input type="checkbox" name="workplace" value="none" /> None{" "}
+                </label>
+              </div>
+            )}
           </div>
           <label>Which one of the following describes you the most?</label>
-          <div style ={{padding: '20px', width: "105%"}}>
-            <Dropdown onSelect ={handleSelect}>
+          <div style={{ padding: "15px", width: "105%" }}>
+            <Dropdown onSelect={handleSelect}>
               <Dropdown.Toggle variant="primary" id="dropdown-basic">
                 Select an option
               </Dropdown.Toggle>
               <Dropdown.Menu>
-              <Dropdown.Item eventKey="Introvert">Introvert</Dropdown.Item>
-              <Dropdown.Item eventKey= "Extrovert">Extrovert</Dropdown.Item>
-              <Dropdown.Item eventKey= "Both">Both</Dropdown.Item>
+                <Dropdown.Item eventKey="Introvert">Introvert</Dropdown.Item>
+                <Dropdown.Item eventKey="Extrovert">Extrovert</Dropdown.Item>
+                <Dropdown.Item eventKey="Both">Both</Dropdown.Item>
+                <Dropdown.Item eventKey="None">None</Dropdown.Item>
               </Dropdown.Menu>
-            </Dropdown> 
+            </Dropdown>
             {selectedOption && (
-        <div style={{ marginTop: '80%', width: '120%' }}>
-          <strong>Selected Option:</strong> {selectedOption}
-        </div>
-      )}
+              <div style={{ marginTop: "5%", width: "120%" }}>
+                <strong>Selected Option:</strong> {selectedOption}
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -3,8 +3,10 @@ import "./App.css";
 import { Button, Form } from "react-bootstrap";
 import Home from "./components/home";
 import BasicQuestions from "./components/basic_question";
-import { Routes, Route, Link } from "react-router-dom";
+//import { Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import DetailedQuestions from "./components/detailed_question";
+
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
 const saveKeyData = "MYKEY";
@@ -26,48 +28,47 @@ function App() {
   function changeKey(event: React.ChangeEvent<HTMLInputElement>) {
     setKey(event.target.value);
   }
-
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* Home navigation Button */}
-        <Link to="/" className="Home-button">
-          <Button variant="outline-light" size="lg" className="mt-3">
-            Home
-          </Button>
-        </Link>
-      </header>
+    <Router>
+      <div className="App">
+        <header className="App-header">
+          {/* Home navigation Button */}
+          <Link to="/" className="Home-button">
+            <Button variant="outline-light" size="lg" className="mt-3">
+              Home
+            </Button>
+          </Link>
+        </header>
+        {/* Routes for the different pages */}
+        <div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/basic_question" element={<BasicQuestions />} />
+            <Route path="/detailed_question" element={<DetailedQuestions />} />
+          </Routes>
+        </div>
 
-      {/* Routes for the different pages */}
-      <main className="App-body">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/basic_question" element={<BasicQuestions />} />
-          <Route path="/detailed_question" element={<DetailedQuestions />} />
-        </Routes>
-      </main>
-
-      {/* Footer with API key input */}
-      <footer className="App-footer">
-        <Form>
-          <Form.Label>API Key:</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Insert API Key Here"
-            onChange={changeKey}
-          ></Form.Control>
-          <br></br>
-          <Button
-            variant="outline-light"
-            size="lg"
-            className="mt-3"
-            onClick={handleSubmit}
-          >
-            Submit
-          </Button>
-        </Form>
-      </footer>
-    </div>
+        <footer className="App-footer">
+          <Form>
+            <Form.Label>API Key:</Form.Label>
+            <Form.Control
+              type="password"
+              placeholder="Insert API Key Here"
+              onChange={changeKey}
+            ></Form.Control>
+            <br></br>
+            <Button
+              variant="outline-light"
+              size="lg"
+              className="mt-3"
+              onClick={handleSubmit}
+            >
+              Submit
+            </Button>
+          </Form>
+        </footer>
+      </div>
+    </Router>
   );
 }
 
