@@ -57,6 +57,18 @@ function DetailedQuestions() {
           </label>
           <textarea id="question7" name="question7"></textarea>
         </div>
+        <div className="question">
+          <label htmlFor="question8">
+            Describe a past project or task that you felt extremely proud of and why.
+          </label>
+          <textarea id="question8" name="question8"></textarea>
+        </div>
+        <div className="question">
+          <label htmlFor="question9">
+            Lastly, what is it that you wanted to be, growing up as a kid? Explain why.
+          </label>
+          <textarea id="question9" name="question9"></textarea>
+        </div>
       </div>
     </div>
   );
