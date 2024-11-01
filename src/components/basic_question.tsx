@@ -21,15 +21,39 @@ function BasicQuestions() {
   // Toggle functions for each dropdown
   const togglePersonalityDropdown = () => {
     setIsPersonalityOpen(!isPersonalityOpen);
+    setIsTaskOrganizingOpen(false);
+    setIsYourFavSubject(false);
+    setIsWorkEnviroment(false);
+    steIsWorkPlace(false);
+    setIsMotivation(false);
+    setIsActivity(false);
+    setIsChallenge(false);
+    setIsDecision(false);
   };
 
   const toggleTaskOrganizingDropdown = () => {
     setIsTaskOrganizingOpen(!isTaskOrganizingOpen);
-  };
+    setIsPersonalityOpen(false);
+    setIsYourFavSubject(false);
+    setIsWorkEnviroment(false);
+    steIsWorkPlace(false);
+    setIsMotivation(false);
+    setIsActivity(false);
+    setIsChallenge(false);
+    setIsDecision(false);
+  }
 
   const toggleFavSubject = () => {
     setIsYourFavSubject(!isYourFavSubjectOpen);
-  };
+    setIsPersonalityOpen(false);
+    setIsTaskOrganizingOpen(false);
+    setIsWorkEnviroment(false);
+    steIsWorkPlace(false);
+    setIsMotivation(false);
+    setIsActivity(false);
+    setIsChallenge(false);
+    setIsDecision(false);
+  }
 
   const handleSelect = (eventKey: string | null) => {
     if (eventKey) {
@@ -39,28 +63,75 @@ function BasicQuestions() {
 
   const toggleWorkEnviroment = () => {
     setIsWorkEnviroment(!isWorkEnviroment);
-  };
+    setIsPersonalityOpen(false);
+    setIsTaskOrganizingOpen(false);
+    setIsYourFavSubject(false);
+    steIsWorkPlace(false);
+    setIsMotivation(false);
+    setIsActivity(false);
+    setIsChallenge(false);
+    setIsDecision(false);
+  }
 
   const toggleMotivation = () => {
     setIsMotivation(!isMotivation);
-  };
+    setIsPersonalityOpen(false);
+    setIsTaskOrganizingOpen(false);
+    setIsYourFavSubject(false);
+    setIsWorkEnviroment(false);
+    steIsWorkPlace(false);
+    setIsActivity(false);
+    setIsChallenge(false);
+    setIsDecision(false);
+  }
 
   const toggleActivity = () => {
     setIsActivity(!isActivity);
-  };
+    setIsPersonalityOpen(false);
+    setIsTaskOrganizingOpen(false);
+    setIsYourFavSubject(false);
+    setIsWorkEnviroment(false);
+    steIsWorkPlace(false);
+    setIsMotivation(false);
+    setIsChallenge(false);
+    setIsDecision(false);
+  }
 
   const toggleChallenge = () => {
     setIsChallenge(!isChallenge);
-  };
+    setIsPersonalityOpen(false);
+    setIsTaskOrganizingOpen(false);
+    setIsYourFavSubject(false);
+    setIsWorkEnviroment(false);
+    steIsWorkPlace(false);
+    setIsMotivation(false);
+    setIsActivity(false);
+    setIsDecision(false);
+  }
 
   const toggleDecision = () => {
     setIsDecision(!isDecision);
-  };
+    setIsPersonalityOpen(false);
+    setIsTaskOrganizingOpen(false);
+    setIsYourFavSubject(false);
+    setIsWorkEnviroment(false);
+    steIsWorkPlace(false);
+    setIsMotivation(false);
+    setIsActivity(false);
+    setIsChallenge(false);
+  }
 
   const toggleWorkPlace = () => {
     steIsWorkPlace(!isWorkPlace);
-  };
-
+    setIsPersonalityOpen(false);
+    setIsTaskOrganizingOpen(false);
+    setIsYourFavSubject(false);
+    setIsWorkEnviroment(false);
+    setIsMotivation(false);
+    setIsActivity(false);
+    setIsChallenge(false);
+    setIsDecision(false);
+  }
   return (
     <div>
       <h1>Basic Question</h1>
