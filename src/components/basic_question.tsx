@@ -259,10 +259,6 @@ function BasicQuestions() {
                   <label>
                   <input type ="checkbox" name="subject" value="Literature" /> Literature </label>
                   <label>
-                  <input type ="checkbox" name="subject" value="Literature" /> Literature </label>
-                  <label>
-                  <input type ="checkbox" name="subject" value="Literature" /> Literature </label>
-                  <label>
                   <input type ="checkbox" name="subject" value="Computer-Science" /> Computer Science </label>
                   <label>
                   <input type ="checkbox" name="subject" value="Economics" /> Economics </label>
