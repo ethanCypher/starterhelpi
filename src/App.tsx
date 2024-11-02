@@ -7,6 +7,7 @@ import BasicQuestions from "./components/basic_question";
 import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import DetailedQuestions from "./components/detailed_question";
 
+//console.log(completion.choices[0].message);
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
 const saveKeyData = "MYKEY";
