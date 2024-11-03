@@ -5,6 +5,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 //import { useNavigate } from "react-router-dom";
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { Button, Form } from "react-bootstrap";
+
 function BasicQuestions() {
   // Separate state for each dropdown
   const [isPersonalityOpen, setIsPersonalityOpen] = useState(false);
@@ -17,6 +19,9 @@ function BasicQuestions() {
   const [isChallenge, setIsChallenge] = useState(false);
   const [isDecision, setIsDecision] = useState(false);
   const [isWorkPlace, steIsWorkPlace] = useState(false);
+
+  //console.log(completion.choices[0].message);
+  //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 
   // Toggle functions for each dropdown
   const togglePersonalityDropdown = () => {
@@ -41,7 +46,7 @@ function BasicQuestions() {
     setIsActivity(false);
     setIsChallenge(false);
     setIsDecision(false);
-  }
+  };
 
   const toggleFavSubject = () => {
     setIsYourFavSubject(!isYourFavSubjectOpen);
@@ -53,7 +58,7 @@ function BasicQuestions() {
     setIsActivity(false);
     setIsChallenge(false);
     setIsDecision(false);
-  }
+  };
 
   const handleSelect = (eventKey: string | null) => {
     if (eventKey) {
@@ -71,7 +76,7 @@ function BasicQuestions() {
     setIsActivity(false);
     setIsChallenge(false);
     setIsDecision(false);
-  }
+  };
 
   const toggleMotivation = () => {
     setIsMotivation(!isMotivation);
@@ -83,7 +88,7 @@ function BasicQuestions() {
     setIsActivity(false);
     setIsChallenge(false);
     setIsDecision(false);
-  }
+  };
 
   const toggleActivity = () => {
     setIsActivity(!isActivity);
@@ -95,7 +100,7 @@ function BasicQuestions() {
     setIsMotivation(false);
     setIsChallenge(false);
     setIsDecision(false);
-  }
+  };
 
   const toggleChallenge = () => {
     setIsChallenge(!isChallenge);
@@ -107,7 +112,7 @@ function BasicQuestions() {
     setIsMotivation(false);
     setIsActivity(false);
     setIsDecision(false);
-  }
+  };
 
   const toggleDecision = () => {
     setIsDecision(!isDecision);
@@ -119,7 +124,7 @@ function BasicQuestions() {
     setIsMotivation(false);
     setIsActivity(false);
     setIsChallenge(false);
-  }
+  };
 
   const toggleWorkPlace = () => {
     steIsWorkPlace(!isWorkPlace);
@@ -131,7 +136,7 @@ function BasicQuestions() {
     setIsActivity(false);
     setIsChallenge(false);
     setIsDecision(false);
-  }
+  };
   return (
     <div>
       <h1>Basic Question</h1>
