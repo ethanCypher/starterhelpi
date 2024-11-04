@@ -5,6 +5,8 @@ import Dropdown from "react-bootstrap/Dropdown";
 //import { useNavigate } from "react-router-dom";
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
+import { Button, Form } from "react-bootstrap";
+
 function BasicQuestions() {
   // Separate state for each dropdown
   const [isPersonalityOpen, setIsPersonalityOpen] = useState(false);
@@ -18,17 +20,44 @@ function BasicQuestions() {
   const [isDecision, setIsDecision] = useState(false);
   const [isWorkPlace, steIsWorkPlace] = useState(false);
 
+  //console.log(completion.choices[0].message);
+  //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
+
   // Toggle functions for each dropdown
   const togglePersonalityDropdown = () => {
     setIsPersonalityOpen(!isPersonalityOpen);
+    setIsTaskOrganizingOpen(false);
+    setIsYourFavSubject(false);
+    setIsWorkEnviroment(false);
+    steIsWorkPlace(false);
+    setIsMotivation(false);
+    setIsActivity(false);
+    setIsChallenge(false);
+    setIsDecision(false);
   };
 
   const toggleTaskOrganizingDropdown = () => {
     setIsTaskOrganizingOpen(!isTaskOrganizingOpen);
+    setIsPersonalityOpen(false);
+    setIsYourFavSubject(false);
+    setIsWorkEnviroment(false);
+    steIsWorkPlace(false);
+    setIsMotivation(false);
+    setIsActivity(false);
+    setIsChallenge(false);
+    setIsDecision(false);
   };
 
   const toggleFavSubject = () => {
     setIsYourFavSubject(!isYourFavSubjectOpen);
+    setIsPersonalityOpen(false);
+    setIsTaskOrganizingOpen(false);
+    setIsWorkEnviroment(false);
+    steIsWorkPlace(false);
+    setIsMotivation(false);
+    setIsActivity(false);
+    setIsChallenge(false);
+    setIsDecision(false);
   };
 
   const handleSelect = (eventKey: string | null) => {
@@ -39,28 +68,125 @@ function BasicQuestions() {
 
   const toggleWorkEnviroment = () => {
     setIsWorkEnviroment(!isWorkEnviroment);
+    setIsPersonalityOpen(false);
+    setIsTaskOrganizingOpen(false);
+    setIsYourFavSubject(false);
+    steIsWorkPlace(false);
+    setIsMotivation(false);
+    setIsActivity(false);
+    setIsChallenge(false);
+    setIsDecision(false);
   };
 
   const toggleMotivation = () => {
     setIsMotivation(!isMotivation);
+    setIsPersonalityOpen(false);
+    setIsTaskOrganizingOpen(false);
+    setIsYourFavSubject(false);
+    setIsWorkEnviroment(false);
+    steIsWorkPlace(false);
+    setIsActivity(false);
+    setIsChallenge(false);
+    setIsDecision(false);
   };
 
   const toggleActivity = () => {
     setIsActivity(!isActivity);
+    setIsPersonalityOpen(false);
+    setIsTaskOrganizingOpen(false);
+    setIsYourFavSubject(false);
+    setIsWorkEnviroment(false);
+    steIsWorkPlace(false);
+    setIsMotivation(false);
+    setIsChallenge(false);
+    setIsDecision(false);
   };
 
   const toggleChallenge = () => {
     setIsChallenge(!isChallenge);
+    setIsPersonalityOpen(false);
+    setIsTaskOrganizingOpen(false);
+    setIsYourFavSubject(false);
+    setIsWorkEnviroment(false);
+    steIsWorkPlace(false);
+    setIsMotivation(false);
+    setIsActivity(false);
+    setIsDecision(false);
   };
 
   const toggleDecision = () => {
     setIsDecision(!isDecision);
+    setIsPersonalityOpen(false);
+    setIsTaskOrganizingOpen(false);
+    setIsYourFavSubject(false);
+    setIsWorkEnviroment(false);
+    steIsWorkPlace(false);
+    setIsMotivation(false);
+    setIsActivity(false);
+    setIsChallenge(false);
   };
 
   const toggleWorkPlace = () => {
     steIsWorkPlace(!isWorkPlace);
+    setIsPersonalityOpen(false);
+    setIsTaskOrganizingOpen(false);
+    setIsYourFavSubject(false);
+    setIsWorkEnviroment(false);
+    setIsMotivation(false);
+    setIsActivity(false);
+    setIsChallenge(false);
+    setIsDecision(false);
   };
 
+  // implementing GPT
+
+  const [answers, setAnswers] = useState<string[]>(Array(9).fill(""));
+  const [response, setResponse] = useState<string>("");
+
+  // Function to call ChatGPT API
+  const submitAnswers = async () => {
+    const apiKey = JSON.parse(localStorage.getItem("MYKEY") || '""');
+    if (!apiKey) {
+      alert("Please enter your API key in the App.");
+      return;
+    }
+
+    try {
+      const messages = answers.map((answer, index) => ({
+        role: "user",
+        content: `Question ${
+          index + 1
+        }: ${answer},Please provide a detailed assessment of this response, including how it relates to potential career paths and advice on next steps.`,
+      }));
+
+      const response = await fetch(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+          },
+          body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [
+              {
+                role: "system",
+                content:
+                  "You are a career advisor specializing in providing detailed assessments based on user responses. Give in-depth feedback and career guidance based on the answers provided.",
+              },
+              ...messages,
+            ],
+          }),
+        }
+      );
+
+      const data = await response.json();
+      setResponse(data.choices[0].message.content);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   return (
     <div>
       <h1>Basic Question</h1>
@@ -608,6 +734,18 @@ function BasicQuestions() {
               </div>
             )}
           </div>
+          <button onClick={submitAnswers} style={{ marginTop: "20px" }}>
+            Submit for Assessment
+          </button>{" "}
+          {/* Submit button */}
+          {response && (
+            <div className="response" style={{ marginTop: "20px" }}>
+              {" "}
+              {/* Response section */}
+              <h2>Career Assessment Result</h2>
+              <p>{response}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

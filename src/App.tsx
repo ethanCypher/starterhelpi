@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-//import logo from "./logo.svg";
 import "./App.css";
 import { Button, Form } from "react-bootstrap";
 import Home from "./components/home";
@@ -8,6 +7,7 @@ import BasicQuestions from "./components/basic_question";
 import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import DetailedQuestions from "./components/detailed_question";
 
+//console.log(completion.choices[0].message);
 //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 let keyData = "";
 const saveKeyData = "MYKEY";
@@ -40,7 +40,6 @@ function App() {
             </Button>
           </Link>
         </header>
-
         {/* Routes for the different pages */}
         <div>
           <Routes>
