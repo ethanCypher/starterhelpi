@@ -5,7 +5,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 //import { useNavigate } from "react-router-dom";
 //import 'bootstrap/dist/css/bootstrap.min.css';
 
-import { Button, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 function BasicQuestions() {
   // Separate state for each dropdown
@@ -140,7 +140,7 @@ function BasicQuestions() {
 
   // implementing GPT
 
-  const [answers, setAnswers] = useState<string[]>(Array(9).fill(""));
+  const [answers] = useState<string[]>(Array(9).fill(""));
   const [response, setResponse] = useState<string>("");
 
   // Function to call ChatGPT API
@@ -734,12 +734,12 @@ function BasicQuestions() {
               </div>
             )}
           </div>
-          <button onClick={submitAnswers} style={{ marginTop: "20px" }}>
+          <Button onClick={submitAnswers} style={{ marginTop: "20px" }}>
             Submit for Assessment
-          </button>{" "}
+          </Button>{" "}
           {/* Submit button */}
           {response && (
-            <div className="response" style={{ marginTop: "20px" }}>
+            <div style={{ marginTop: "20px" }}>
               {" "}
               {/* Response section */}
               <h2>Career Assessment Result</h2>
