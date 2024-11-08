@@ -16,45 +16,43 @@ function BasicQuestions() {
   const [isActivity, setIsActivity] = useState(false);
   const [isChallenge, setIsChallenge] = useState(false);
   const [isDecision, setIsDecision] = useState(false);
-  const [isWorkPlace, steIsWorkPlace] = useState(false);
+  const [isWorkPlace, setIsWorkPlace] = useState(false);
 
-
-  // Toggle functions for each dropdown
-  const togglePersonalityDropdown = () => {
-    setIsPersonalityOpen(!isPersonalityOpen);
+  const resetAllDropdowns = () => {
+    setIsPersonalityOpen(false);
     setIsTaskOrganizingOpen(false);
     setIsYourFavSubject(false);
     setIsWorkEnviroment(false);
-    steIsWorkPlace(false);
+    setIsWorkPlace(false);
     setIsMotivation(false);
     setIsActivity(false);
     setIsChallenge(false);
     setIsDecision(false);
+    setSelectedOption('');
+  };
+  /*const handleSubmit = () => {
+    console.log("Form Submitted!");
+    resetAllDropdowns();  // Reset all dropdowns after submission
+  };
+  */
+  // Toggle function that resets all dropdowns and toggles the specific one
+  const toggleDropdown = (setter: (value: boolean) => void, isOpen: boolean) => {
+    resetAllDropdowns();
+    setter(!isOpen);
   };
 
-  const toggleTaskOrganizingDropdown = () => {
-    setIsTaskOrganizingOpen(!isTaskOrganizingOpen);
-    setIsPersonalityOpen(false);
-    setIsYourFavSubject(false);
-    setIsWorkEnviroment(false);
-    steIsWorkPlace(false);
-    setIsMotivation(false);
-    setIsActivity(false);
-    setIsChallenge(false);
-    setIsDecision(false);
-  }
+  // Usage for each dropdown toggle
+  const togglePersonalityDropdown = () => toggleDropdown(setIsPersonalityOpen, isPersonalityOpen);
+  const toggleTaskOrganizingDropdown = () => toggleDropdown(setIsTaskOrganizingOpen, isTaskOrganizingOpen);
+  const toggleFavSubject = () => toggleDropdown(setIsYourFavSubject, isYourFavSubjectOpen);
+  const toggleWorkEnviroment = () => toggleDropdown(setIsWorkEnviroment, isWorkEnviroment);
+  const toggleMotivation = () => toggleDropdown(setIsMotivation, isMotivation);
+  const toggleActivity = () => toggleDropdown(setIsActivity, isActivity);
+  const toggleChallenge = () => toggleDropdown(setIsChallenge, isChallenge);
+  const toggleDecision = () => toggleDropdown(setIsDecision, isDecision);
+  const toggleWorkPlace = () => toggleDropdown(setIsWorkPlace, isWorkPlace);
 
-  const toggleFavSubject = () => {
-    setIsYourFavSubject(!isYourFavSubjectOpen);
-    setIsPersonalityOpen(false);
-    setIsTaskOrganizingOpen(false);
-    setIsWorkEnviroment(false);
-    steIsWorkPlace(false);
-    setIsMotivation(false);
-    setIsActivity(false);
-    setIsChallenge(false);
-    setIsDecision(false);
-  }
+
 
   const handleSelect = (eventKey: string | null) => {
     if (eventKey) {
@@ -62,77 +60,6 @@ function BasicQuestions() {
     }
   };
 
-  const toggleWorkEnviroment = () => {
-    setIsWorkEnviroment(!isWorkEnviroment);
-    setIsPersonalityOpen(false);
-    setIsTaskOrganizingOpen(false);
-    setIsYourFavSubject(false);
-    steIsWorkPlace(false);
-    setIsMotivation(false);
-    setIsActivity(false);
-    setIsChallenge(false);
-    setIsDecision(false);
-  }
-
-  const toggleMotivation = () => {
-    setIsMotivation(!isMotivation);
-    setIsPersonalityOpen(false);
-    setIsTaskOrganizingOpen(false);
-    setIsYourFavSubject(false);
-    setIsWorkEnviroment(false);
-    steIsWorkPlace(false);
-    setIsActivity(false);
-    setIsChallenge(false);
-    setIsDecision(false);
-  }
-
-  const toggleActivity = () => {
-    setIsActivity(!isActivity);
-    setIsPersonalityOpen(false);
-    setIsTaskOrganizingOpen(false);
-    setIsYourFavSubject(false);
-    setIsWorkEnviroment(false);
-    steIsWorkPlace(false);
-    setIsMotivation(false);
-    setIsChallenge(false);
-    setIsDecision(false);
-  }
-
-  const toggleChallenge =() => {
-    setIsChallenge(!isChallenge);
-    setIsPersonalityOpen(false);
-    setIsTaskOrganizingOpen(false);
-    setIsYourFavSubject(false);
-    setIsWorkEnviroment(false);
-    steIsWorkPlace(false);
-    setIsMotivation(false);
-    setIsActivity(false);
-    setIsDecision(false);
-  }
-
-  const toggleDecision =() => {
-    setIsDecision(!isDecision);
-    setIsPersonalityOpen(false);
-    setIsTaskOrganizingOpen(false);
-    setIsYourFavSubject(false);
-    setIsWorkEnviroment(false);
-    steIsWorkPlace(false);
-    setIsMotivation(false);
-    setIsActivity(false);
-    setIsChallenge(false);
-  }
-
-  const toggleWorkPlace = () => {
-    steIsWorkPlace(!isWorkPlace);
-    setIsPersonalityOpen(false);
-    setIsTaskOrganizingOpen(false);
-    setIsYourFavSubject(false);
-    setIsWorkEnviroment(false);
-    setIsMotivation(false);
-    setIsActivity(false);
-    setIsChallenge(false);
-    setIsDecision(false);
-  }
   return (
     <div>
       <h1>Basic Question</h1>
