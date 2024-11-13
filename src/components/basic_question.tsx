@@ -1,11 +1,13 @@
 import "./basic_question.css";
 import React, { useState } from "react";
+//import { useAccordionButton } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
-
+//import { useNavigate } from "react-router-dom";
 //import 'bootstrap/dist/css/bootstrap.min.css';
 //import { useAccordionButton } from "react-bootstrap";
 
 // new added
+import { Button } from "react-bootstrap";
 type AnswerType = {
   personality: string[];
   taskOrganizing: string[];
@@ -33,6 +35,7 @@ function BasicQuestions() {
 
   //Newly added
   // Separate state for each dropdown and checkboxes
+
   const [answers, setAnswers] = useState<AnswerType>({
     personality: [],
     taskOrganizing: [],
@@ -213,6 +216,63 @@ function BasicQuestions() {
   const toggleChallenge = () => toggleDropdown(setIsChallenge, isChallenge);
   const toggleDecision = () => toggleDropdown(setIsDecision, isDecision);
   const toggleWorkPlace = () => toggleDropdown(setIsWorkPlace, isWorkPlace);
+
+  // implementing GPT
+
+  const [response, setResponse] = useState<string>("");
+
+  // Function to call ChatGPT API
+  const submitAnswers = async () => {
+    const apiKey = JSON.parse(localStorage.getItem("MYKEY") || '""');
+    if (!apiKey) {
+      alert("Please enter your API key in the App.");
+      return;
+    }
+
+    try {
+      // Create messages based on the answers state
+      const messages = Object.keys(answers).map((key, index) => {
+        const answerValue = answers[key as keyof AnswerType];
+        const responseText = Array.isArray(answerValue)
+          ? answerValue.join(", ") // Join multiple values if it's an array
+          : answerValue;
+
+        return {
+          role: "user",
+          content: `Question ${
+            index + 1
+          }: ${responseText}. Please provide a detailed assessment of this response, including how it relates to potential career paths and advice on next steps.`,
+        };
+      });
+
+      const response = await fetch(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+          },
+          body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [
+              {
+                role: "system",
+                content:
+                  "You are a career advisor specializing in providing detailed assessments based on user responses. Give in-depth feedback and career guidance based on the answers provided.",
+              },
+              ...messages,
+            ],
+          }),
+        }
+      );
+
+      const data = await response.json();
+      setResponse(data.choices[0].message.content);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   return (
     <div>
@@ -449,6 +509,18 @@ function BasicQuestions() {
             )}
           </div>
         </div>
+        <Button onClick={submitAnswers} style={{ marginTop: "20px" }}>
+          Submit for Assessment
+        </Button>{" "}
+        {/* Submit button */}
+        {response && (
+          <div className="response" style={{ marginTop: "20px" }}>
+            {" "}
+            {/* Response section */}
+            <h2>Career Assessment Result</h2>
+            <p>{response}</p>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -89,12 +89,12 @@ function DetailedQuestions() {
           </div>
         ))}
       </div>
-      <button onClick={submitAnswers} style={{ marginTop: "20px" }}>
+      <button onClick={submitAnswers} style={{ marginTop: "20%" }}>
         Submit for Assessment
       </button>{" "}
       {/* Submit button */}
       {response && (
-        <div className="response" style={{ marginTop: "20px" }}>
+        <div className="body" style={{ marginTop: "20px" }}>
           {" "}
           {/* Response section */}
           <h2>Career Assessment Result</h2>
