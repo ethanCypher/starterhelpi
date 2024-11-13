@@ -1,31 +1,83 @@
-.body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    margin: 0;
+/* Center the entire container on the page */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-.question-container{ 
-    border-radius: 10px;
-    background-color: rgb(161, 227, 229);
-    padding: 20px; 
-    width: 80%;
-    min-height: 200px; 
-}
-.question{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 1em;
-}
-
-label{
-    margin-bottom: 0.5em;
-    font-weight: bold;
+/* Question container styling */
+.question-container {
+  width: 80%;
+  max-width: 1100px;
+  background-color: #a1e3e5;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 200px;
+  margin-top: 40px;
 }
 
-textarea{
-    width: 100%;
-    min-height: 150px;
-    resize:vertical;
+/* Individual question styling */
+.question {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5em;
+}
+
+label {
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  color: #333;
+}
+
+textarea {
+  width: 100%;
+  min-height: 50px;
+  resize: vertical;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Styling for submit button */
+.submit-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+/* Response container styling */
+.response-container {
+  width: 80%;
+  max-width: 800px;
+  background-color: #e9f7fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: -150px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.response-container h2 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.response-container p {
+  font-size: 1em;
+  line-height: 1.5;
+  color: #333;
 }
