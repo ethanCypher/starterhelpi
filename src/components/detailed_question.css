@@ -1,8 +1,26 @@
+/* .body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+} */
+
+.main-container {
+    width: 90%; 
+    max-width: 800px; 
+    padding: 20px;
+    text-align: center;
+    position: center;
+}
+
 .question-container{ 
     border-radius: 10px;
     background-color: rgb(161, 227, 229);
     padding: 20px; 
-    width: 100%; 
+    width: 80%;
+    min-height: 200px; 
+    position: center;
 }
 .question{
     display: flex;
@@ -17,6 +35,6 @@ label{
 
 textarea{
     width: 100%;
-    min-height: 100px;
+    min-height: 150px;
     resize:vertical;
 }

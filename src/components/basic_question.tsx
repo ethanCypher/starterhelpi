@@ -1,10 +1,8 @@
 import "./basic_question.css";
+
 import React, { useState, useEffect } from "react";
 import { ProgressBar } from "react-bootstrap";
 import Dropdown from 'react-bootstrap/Dropdown';
-
-//import 'bootstrap/dist/css/bootstrap.min.css';
-//import { useAccordionButton } from "react-bootstrap";
 
 // new added 
 type AnswerType = {
@@ -22,6 +20,9 @@ type AnswerType = {
 //new newly added 
 const totalQuestions = 10;
 
+import { Button } from "react-bootstrap";
+
+
 function BasicQuestions() {
   // Separate state for each dropdown
   const [isPersonalityOpen, setIsPersonalityOpen] = useState(false);
@@ -33,6 +34,7 @@ function BasicQuestions() {
   const [isChallenge, setIsChallenge] = useState(false);
   const [isDecision, setIsDecision] = useState(false);
   const [isWorkPlace, setIsWorkPlace] = useState(false);
+
 
   //Newly added 
   // Separate state for each dropdown and checkboxes
@@ -64,9 +66,19 @@ function BasicQuestions() {
       } else if (key === 'introvertExtrovert' && answers.introvertExtrovert) {
         count++;
       }
+
+  //console.log(completion.choices[0].message);
+  //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
+
+
+  const handleSelect = (eventKey: string | null) => {
+    if (eventKey) {
+      setSelectedOption(eventKey);
+
     }
     setCompletedQuestions(count);
   };
+
 
   // Update the completed question count whenever answers change
   useEffect(updateCompletedQuestions, [answers]);
@@ -87,6 +99,7 @@ function BasicQuestions() {
   "Working with numbers or data", "Cooking or preparing meals", "Playing sports or staying active", "None"];
 
   const challenges = ["Solving complex problems", "Meeting new people and networking", "Creating innovative solutions", "Managing multiple tasks at once", "None"];
+
 
   const decisions = ["based on logic and facts", "trust my instincts", "seek advice from others", "carefully think through all choices", "None"];
 
@@ -137,6 +150,7 @@ function BasicQuestions() {
     setIsChallenge(false);
     setIsDecision(false);
   };
+
   /*const handleSubmit = () => {
     console.log("Form Submitted!");
     resetAllDropdowns();  // Reset all dropdowns after submission
@@ -159,6 +173,58 @@ function BasicQuestions() {
   const toggleDecision = () => toggleDropdown(setIsDecision, isDecision);
   const toggleWorkPlace = () => toggleDropdown(setIsWorkPlace, isWorkPlace);
 
+
+
+  // implementing GPT
+
+  const [answers] = useState<string[]>(Array(9).fill(""));
+  const [response, setResponse] = useState<string>("");
+
+  // Function to call ChatGPT API
+  const submitAnswers = async () => {
+    const apiKey = JSON.parse(localStorage.getItem("MYKEY") || '""');
+    if (!apiKey) {
+      alert("Please enter your API key in the App.");
+      return;
+    }
+
+    try {
+      const messages = answers.map((answer, index) => ({
+        role: "user",
+        content: `Question ${
+          index + 1
+        }: ${answer},Please provide a detailed assessment of this response, including how it relates to potential career paths and advice on next steps.`,
+      }));
+
+      const response = await fetch(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`,
+          },
+          body: JSON.stringify({
+            model: "gpt-3.5-turbo",
+            messages: [
+              {
+                role: "system",
+                content:
+                  "You are a career advisor specializing in providing detailed assessments based on user responses. Give in-depth feedback and career guidance based on the answers provided.",
+              },
+              ...messages,
+            ],
+          }),
+        }
+      );
+
+      const data = await response.json();
+      setResponse(data.choices[0].message.content);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
   return (
     <div>
       <h1>Basic Question</h1>
@@ -168,6 +234,7 @@ function BasicQuestions() {
           <ProgressBar now={calculateProgress()} label={`${calculateProgress().toFixed(0)}%`} />
           <label>Question 1</label>
           <div className="dropdown">
+
             <button className="dropdown-toggle" onClick={togglePersonalityDropdown}>
               Which of these best represents your personality?
             </button>
@@ -181,11 +248,13 @@ function BasicQuestions() {
                     onChange={() => handleCheckboxChange("personality", personality)}
                   />
                   {personality}
+
                 </label>
               ))}
             </div>
             )}
           </div>
+
           {/* Task Organizing Dropdown (Question 2) */}
       <label>Question 2</label>
       <div className="dropdown">
@@ -370,7 +439,20 @@ function BasicQuestions() {
     </div>
   )}
 </div>
+
           </div>
+          <Button onClick={submitAnswers} style={{ marginTop: "20px" }}>
+            Submit for Assessment
+          </Button>{" "}
+          {/* Submit button */}
+          {response && (
+            <div style={{ marginTop: "20px" }}>
+              {" "}
+              {/* Response section */}
+              <h2>Career Assessment Result</h2>
+              <p>{response}</p>
+            </div>
+          )}
         </div>
       </div>
   );
