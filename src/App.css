@@ -5,12 +5,14 @@
 .App-header {
   background-color: #33c6d3;
   min-height: 8vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(8% + 1vmin);
   color: white;
+  position: fixed;
 }
 .center_boxes {
   display: flex;
@@ -33,9 +35,10 @@
   justify-content: center;
   color: rgb(255, 255, 255);
   font-size: 12%;
+  position: fixed;
 
   /* Added properties */
-  position: fixed;
+
   bottom: 0;
   left: 0;
   width: 100%;
