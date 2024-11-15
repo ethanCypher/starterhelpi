@@ -469,7 +469,7 @@ function BasicQuestions() {
           </div>
         )}
       </div>
-      </div>
+    </div>
   );
 }
   
