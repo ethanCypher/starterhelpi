@@ -66,3 +66,17 @@
     margin-bottom: 3px;
     color: #1a1a1a;
   }
+
+  .custom-progress {
+    height: 25px;
+    background-color: #a8a11c;
+    border-radius: 5px;
+    border: 1px solid #87c619;
+  }
+   .custom-progress-bar {
+    background-color: #e15d5d; /* Custom color for the progress fill */
+    transition: width 0.4s ease;
+    font-weight: bold;
+    color: rgba(220, 17, 17, 0.878);
+  }
+ 
