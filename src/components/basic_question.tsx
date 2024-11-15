@@ -464,9 +464,6 @@ function BasicQuestions() {
             </div>
           )}
         </div>
-      </div>
   );
 }
-  
-
 export default BasicQuestions;
