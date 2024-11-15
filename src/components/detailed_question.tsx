@@ -58,12 +58,8 @@ function DetailedQuestions() {
   };
 
   return (
-    <div className="body">
-      {" "}
-      {/* Use your existing class name */}
+    <div className="container">
       <div className="question-container">
-        {" "}
-        {/* Use your existing class name */}
         <h1>Detailed Question Page</h1>
         {[
           "What tasks or activities do you find most fulfilling?",
@@ -88,15 +84,13 @@ function DetailedQuestions() {
             ></textarea>
           </div>
         ))}
+        <button onClick={submitAnswers} className="submit-button">
+          Submit for Assessment
+        </button>
       </div>
-      <button onClick={submitAnswers} style={{ marginTop: "20%" }}>
-        Submit for Assessment
-      </button>{" "}
-      {/* Submit button */}
+
       {response && (
-        <div className="body" style={{ marginTop: "20px" }}>
-          {" "}
-          {/* Response section */}
+        <div className="response-container">
           <h2>Career Assessment Result</h2>
           <p>{response}</p>
         </div>
