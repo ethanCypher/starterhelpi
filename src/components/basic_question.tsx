@@ -1,4 +1,5 @@
 import "./basic_question.css";
+import { Button } from "react-bootstrap";
 
 import React, { useState, useEffect } from "react";
 import { ProgressBar } from "react-bootstrap";
@@ -20,7 +21,6 @@ type AnswerType = {
 //new newly added 
 const totalQuestions = 10;
 
-import { Button } from "react-bootstrap";
 
 
 function BasicQuestions() {
@@ -66,18 +66,20 @@ function BasicQuestions() {
       } else if (key === 'introvertExtrovert' && answers.introvertExtrovert) {
         count++;
       }
+    }
+  }
 
   //console.log(completion.choices[0].message);
   //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
 
 
-  const handleSelect = (eventKey: string | null) => {
-    if (eventKey) {
-      setSelectedOption(eventKey);
+  // const handleSelect = (eventKey: string | null) => {
+  //   if (eventKey) {
+  //     setSelectedOption(eventKey);
 
-    }
-    setCompletedQuestions(count);
-  };
+  //   }
+  //   setCompletedQuestions(count);
+  // };
 
 
   // Update the completed question count whenever answers change
@@ -175,55 +177,62 @@ function BasicQuestions() {
 
 
 
-  // implementing GPT
+ // implementing GPT
 
-  const [answers] = useState<string[]>(Array(9).fill(""));
-  const [response, setResponse] = useState<string>("");
+ const [response, setResponse] = useState<string>("");
 
-  // Function to call ChatGPT API
-  const submitAnswers = async () => {
-    const apiKey = JSON.parse(localStorage.getItem("MYKEY") || '""');
-    if (!apiKey) {
-      alert("Please enter your API key in the App.");
-      return;
-    }
+ // Function to call ChatGPT API
+ const submitAnswers = async () => {
+   const apiKey = JSON.parse(localStorage.getItem("MYKEY") || '""');
+   if (!apiKey) {
+     alert("Please enter your API key in the App.");
+     return;
+   }
 
-    try {
-      const messages = answers.map((answer, index) => ({
-        role: "user",
-        content: `Question ${
-          index + 1
-        }: ${answer},Please provide a detailed assessment of this response, including how it relates to potential career paths and advice on next steps.`,
-      }));
+   try {
+     // Create messages based on the answers state
+     const messages = Object.keys(answers).map((key, index) => {
+       const answerValue = answers[key as keyof AnswerType];
+       const responseText = Array.isArray(answerValue)
+         ? answerValue.join(", ") // Join multiple values if it's an array
+         : answerValue;
 
-      const response = await fetch(
-        "https://api.openai.com/v1/chat/completions",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
-          },
-          body: JSON.stringify({
-            model: "gpt-3.5-turbo",
-            messages: [
-              {
-                role: "system",
-                content:
-                  "You are a career advisor specializing in providing detailed assessments based on user responses. Give in-depth feedback and career guidance based on the answers provided.",
-              },
-              ...messages,
-            ],
-          }),
-        }
-      );
+       return {
+         role: "user",
+         content: `Question ${
+           index + 1
+         }: ${responseText}. Please provide a detailed assessment of this response, including how it relates to potential career paths and advice on next steps.`,
+       };
+     });
 
-      const data = await response.json();
-      setResponse(data.choices[0].message.content);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+     const response = await fetch(
+       "https://api.openai.com/v1/chat/completions",
+       {
+         method: "POST",
+         headers: {
+           "Content-Type": "application/json",
+           Authorization: `Bearer ${apiKey}`,
+         },
+         body: JSON.stringify({
+           model: "gpt-3.5-turbo",
+           messages: [
+             {
+               role: "system",
+               content:
+                 "You are a career advisor specializing in providing detailed assessments based on user responses. Give in-depth feedback and career guidance based on the answers provided.",
+             },
+             ...messages,
+           ],
+         }),
+       }
+     );
+
+     const data = await response.json();
+     setResponse(data.choices[0].message.content);
+   } catch (error) {
+     console.error("Error fetching data:", error);
+   }
+ };
 
   return (
     <div>
@@ -457,5 +466,6 @@ function BasicQuestions() {
       </div>
   );
 }
+  
 
 export default BasicQuestions;
