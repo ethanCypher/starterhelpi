@@ -1,5 +1,6 @@
 import "./basic_question.css";
 import { Button } from "react-bootstrap";
+
 import React, { useState, useEffect } from "react";
 import { ProgressBar } from "react-bootstrap";
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -68,6 +69,19 @@ function BasicQuestions() {
     }
     setCompletedQuestions(count);
   }
+
+  //console.log(completion.choices[0].message);
+  //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
+
+
+  // const handleSelect = (eventKey: string | null) => {
+  //   if (eventKey) {
+  //     setSelectedOption(eventKey);
+
+  //   }
+  //   setCompletedQuestions(count);
+  // };
+
 
   // Update the completed question count whenever answers change
   useEffect(updateCompletedQuestions, [answers]);
@@ -163,8 +177,8 @@ function BasicQuestions() {
   const toggleWorkPlace = () => toggleDropdown(setIsWorkPlace, isWorkPlace);
 
 
- // implementing GPT
 
+ // implementing GPT
 
  const [response, setResponse] = useState<string>("");
 
@@ -176,50 +190,51 @@ function BasicQuestions() {
      return;
    }
 
-    try {
-      // Create messages based on the answers state
-      const messages = Object.keys(answers).map((key, index) => {
-        const answerValue = answers[key as keyof AnswerType];
-        const responseText = Array.isArray(answerValue)
-          ? answerValue.join(", ") // Join multiple values if it's an array
-          : answerValue;
+   try {
+     // Create messages based on the answers state
+     const messages = Object.keys(answers).map((key, index) => {
+       const answerValue = answers[key as keyof AnswerType];
+       const responseText = Array.isArray(answerValue)
+         ? answerValue.join(", ") // Join multiple values if it's an array
+         : answerValue;
 
-        return {
-          role: "user",
-          content: `Question ${
-            index + 1
-          }: ${responseText}. Please provide a detailed assessment of this response, including how it relates to potential career paths and advice on next steps.`,
-        };
-      });
+       return {
+         role: "user",
+         content: `Question ${
+           index + 1
+         }: ${responseText}. Please provide a detailed assessment of this response, including how it relates to potential career paths and advice on next steps.`,
+       };
+     });
 
-      const response = await fetch(
-        "https://api.openai.com/v1/chat/completions",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`,
-          },
-          body: JSON.stringify({
-            model: "gpt-3.5-turbo",
-            messages: [
-              {
-                role: "system",
-                content:
-                  "You are a career advisor specializing in providing detailed assessments based on user responses. Give in-depth feedback and career guidance based on the answers provided.",
-              },
-              ...messages,
-            ],
-          }),
-        }
-      );
+     const response = await fetch(
+       "https://api.openai.com/v1/chat/completions",
+       {
+         method: "POST",
+         headers: {
+           "Content-Type": "application/json",
+           Authorization: `Bearer ${apiKey}`,
+         },
+         body: JSON.stringify({
+           model: "gpt-3.5-turbo",
+           messages: [
+             {
+               role: "system",
+               content:
+                 "You are a career advisor specializing in providing detailed assessments based on user responses. Give in-depth feedback and career guidance based on the answers provided.",
+             },
+             ...messages,
+           ],
+         }),
+       }
+     );
 
-      const data = await response.json();
-      setResponse(data.choices[0].message.content);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+     const data = await response.json();
+     setResponse(data.choices[0].message.content);
+   } catch (error) {
+     console.error("Error fetching data:", error);
+   }
+ };
+
   return (
     <div>
       <h1>Basic Question</h1>
