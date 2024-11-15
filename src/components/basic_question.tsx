@@ -67,6 +67,7 @@ function BasicQuestions() {
         count++;
       }
     }
+    setCompletedQuestions(count);
   }
 
   //console.log(completion.choices[0].message);
