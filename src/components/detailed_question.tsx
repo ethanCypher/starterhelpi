@@ -59,7 +59,7 @@ function DetailedQuestions() {
   };
 
   return (
-    <div className="container">
+    <div className="detailed-container">
       <div className="question-container">
         <h1>Detailed Question Page</h1>
         {[

@@ -48,7 +48,7 @@
   background-color: #ffffff;
   min-height: 100vh; /* Adjusted to fill the remaining space */
   padding: 0;
-  background-image: url("/public/Pictures/Background_picture.png"); /* Change to your image path */
+  background-image: url("/public/Pictures/picture3.png"); /* Change to your image path */
   /* background-size: cover; /* Cover the entire viewport */
   /* background-position: center; /* Center the image */
   /* Slim the image to the left */

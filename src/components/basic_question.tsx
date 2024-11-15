@@ -488,11 +488,12 @@ function BasicQuestions() {
               </div>
             )}
           </div>
-          <label>Which one of the following describes you the most?</label>
-          <div style={{ padding: "15px", width: "105%" }}>
+          <label>Question 10</label>
+          <div style={{ width: "100%" }}>
             <Dropdown onSelect={handleSelect}>
-              <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                {answers.introvertExtrovert || "Select an option"}
+              <Dropdown.Toggle style={{ color: "black" }}>
+                {answers.introvertExtrovert ||
+                  "Which one of the following describes you the most?"}
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item eventKey="Introvert">Introvert</Dropdown.Item>
