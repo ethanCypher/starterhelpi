@@ -470,7 +470,6 @@ function BasicQuestions() {
         )}
       </div>
       </div>
-    
   );
 }
   
