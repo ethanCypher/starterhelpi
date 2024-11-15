@@ -468,6 +468,7 @@ function BasicQuestions() {
             <p>{response}</p>
           </div>
         )}
+        </div>
       </div>
   );
 }
