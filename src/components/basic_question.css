@@ -25,37 +25,58 @@
     text-align: center;
   }
 
-
+.dropdown {
+  position:relative;
+}
  
-  
-  .dropdown {
-    position: relative;
-  }
   
   .dropdown-toggle {
     width: 120%;
     padding: 10px;
     border: 1px solid #ccc;
-    background-color: #fff;
+    background-color: #f9f4f4;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 6px;
     text-align: left;
-  }
+    position: relative;
+  } 
+  
   
   .checkbox-group {
+    position: absolute;
+    right: 0;
+    left: 115%;
     border: 1px solid #ccc;
     border-radius: 5px;
-    background-color: #fff;
-    padding: 8px;
-    position: absolute;
+    background-color: rgb(161, 227, 229);
+    padding: 10px;
     width: auto;
-    min-width: 150px;
-    z-index: 1;
+    min-width: 320px;
+    z-index: 10;
     text-align: left;
+    white-space: nowrap;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+
+    max-height: 150px; /* Adjust this to fit three options */
+    overflow-y: auto;
   }
   
   .checkbox-group label {
     display: block;
-    margin-bottom: 5px;
-    color: #555;
+    margin-bottom: 3px;
+    color: #1a1a1a;
   }
+
+  .custom-progress {
+    height: 25px;
+    background-color: #a8a11c;
+    border-radius: 5px;
+    border: 1px solid #87c619;
+  }
+   .custom-progress-bar {
+    background-color: #e15d5d; /* Custom color for the progress fill */
+    transition: width 0.4s ease;
+    font-weight: bold;
+    color: rgba(220, 17, 17, 0.878);
+  }
+ 
