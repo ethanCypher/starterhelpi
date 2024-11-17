@@ -1,83 +1,125 @@
 .main-container {
-    display: flex;            
-    flex-direction: column;    
-    justify-content: flex-start; 
-    align-items: flex-start; 
-    border-radius: 10px;
-    background-color: rgb(161, 227, 229);
-    padding: 20px; 
-    width: 100%; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  width: 80%;
+  max-width: 1100px;
+  background-color: #a1e3e5;
+  background-color: rgba(161, 227, 229, 0.7); /* Semi-transparent background */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 200px;
+  margin-top: 40px;
+  margin-left: 400px;
 }
 
+.basic-container {
+  background-image: url("/public/Pictures/picture4.png"); /* Add your image path here */
+  background-size: cover; /* Ensures the image covers the entire container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  min-height: 100vh; /* Full viewport height */
+  width: 100%;
+  position: cover; /* This helps with full coverage */
+}
 
-.question{
-    flex : 1;
-    display: flex;
-    flex-direction: column;
+.question {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .Button-container {
-    background-color: white;
-    padding: 40px;
-    margin: 40px 10px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-  }
+  background-color: white;
+  padding: 40px;
+  margin: 40px 10px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
 
 .dropdown {
-  position:relative;
+  position: relative;
 }
- 
-  
-  .dropdown-toggle {
-    width: 120%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #f9f4f4;
-    cursor: pointer;
-    border-radius: 6px;
-    text-align: left;
-    position: relative;
-  } 
-  
-  
-  .checkbox-group {
-    position: absolute;
-    right: 0;
-    left: 115%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: rgb(161, 227, 229);
-    padding: 10px;
-    width: auto;
-    min-width: 320px;
-    z-index: 10;
-    text-align: left;
-    white-space: nowrap;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 
-    max-height: 150px; /* Adjust this to fit three options */
-    overflow-y: auto;
-  }
-  
-  .checkbox-group label {
-    display: block;
-    margin-bottom: 3px;
-    color: #1a1a1a;
+.dropdown-toggle {
+  background-color: #f9f4f4;
+  cursor: pointer;
+  text-align: left;
+  position: center;
+  width: 230%;
+  margin-left: -65%;
+  min-height: 50px;
+  resize: vertical;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 
-  }
+.checkbox-group {
+  position: absolute;
+  right: 0;
+  left: 115%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: rgb(161, 227, 229);
+  padding: 10px;
+  width: auto;
+  min-width: 320px;
+  z-index: 10;
+  text-align: left;
+  white-space: nowrap;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  max-height: 150px; /* Adjust this to fit three options */
+  overflow-y: auto;
+}
 
-  .custom-progress {
-    height: 25px;
-    background-color: #a8a11c;
-    border-radius: 5px;
-    border: 1px solid #87c619;
-  }
-   .custom-progress-bar {
-    background-color: #e15d5d; /* Custom color for the progress fill */
-    transition: width 0.4s ease;
-    font-weight: bold;
-    color: rgba(220, 17, 17, 0.878);
-  }
- 
+.checkbox-group label {
+  display: block;
+  margin-bottom: 3px;
+  color: #1a1a1a;
+}
+
+/* Styling for submit button */
+.submit-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #1486d2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #1486d2;
+}
+/* Response container styling */
+.response-container {
+  width: 80%;
+  max-width: 800px;
+  background-color: #e9f7fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: -150px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.custom-progress {
+  height: 25px;
+  background-color: #a8a11c;
+  border-radius: 5px;
+  border: 1px solid #87c619;
+}
+.custom-progress-bar {
+  background-color: #e15d5d; /* Custom color for the progress fill */
+  transition: width 0.4s ease;
+  font-weight: bold;
+  color: rgba(220, 17, 17, 0.878);
+}

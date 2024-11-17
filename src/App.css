@@ -49,8 +49,8 @@
   /* background-size: cover; /* Cover the entire viewport */
   /* background-position: center; /* Center the image */
   /* Slim the image to the left */
-  background-size: 55% auto; /* Reduce the width to 30% of the container */
-  background-position: left center; /* Align the image to the left, centered vertically */
+  background-size: 55% 95%; /* Reduce the width to 30% of the container */
+  background-position: left top center; /* Align the image to the left, centered vertically */
 
   background-repeat: no-repeat; /* Prevent repetition */
   background-attachment: fixed;

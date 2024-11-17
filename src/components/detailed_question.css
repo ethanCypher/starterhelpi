@@ -1,10 +1,17 @@
 /* Center the entire container on the page */
-.container {
+.detailed-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 20px;
+  background-image: url("/public/Pictures/picture4.png"); /* Add your image path here */
+  background-size: cover; /* Ensures the image covers the entire container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  min-height: 100vh; /* Full viewport height */
+  width: 100%;
+  position: cover; /* This helps with full coverage */
 }
 
 /* Question container styling */
@@ -12,6 +19,7 @@
   width: 80%;
   max-width: 1100px;
   background-color: #a1e3e5;
+  background-color: rgba(161, 227, 229, 0.7); /* Semi-transparent background */
   border-radius: 10px;
   padding: 30px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -46,7 +54,7 @@ textarea {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 1em;
-  background-color: #007bff;
+  background-color: #1486d2;
   color: #fff;
   border: none;
   border-radius: 5px;
