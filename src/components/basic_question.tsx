@@ -471,7 +471,6 @@ function BasicQuestions() {
         <Button onClick={submitAnswers} style={{ marginTop: "20px" }}>
           Submit for Assessment
         </Button>{" "}
-        {/* Submit button */}
         {response && (
           <div className="response" style={{ marginTop: "20px" }}>
             {" "}
