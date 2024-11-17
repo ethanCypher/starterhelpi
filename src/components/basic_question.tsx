@@ -6,8 +6,20 @@ import Dropdown from 'react-bootstrap/Dropdown';
 
 // new added 
 type AnswerType = {
-  personality: string[];
-  taskOrganizing: string[];
+  personality: string[]; iam getting this error, Run npm run build --if-present
+
+> starter_helpi@0.1.0 build
+> react-scripts build
+
+Creating an optimized production build...
+Failed to compile.
+
+[eslint] 
+src/components/basic_question.tsx
+Syntax error: Unexpected token. Did you mean `{'}'}` or `&rbrace;`? (473:undefined)
+
+
+Error: Process completed with exit code 1.  taskOrganizing: string[];
   workEnviroment: string[];
   favSubject: string[];
   motivation: string[];
@@ -459,7 +471,6 @@ function BasicQuestions() {
         <Button onClick={submitAnswers} style={{ marginTop: "20px" }}>
           Submit for Assessment
         </Button>{" "}
-        {/* Submit button */}
         {response && (
           <div className="response" style={{ marginTop: "20px" }}>
             {" "}
@@ -469,6 +480,7 @@ function BasicQuestions() {
           </div>
         )}
       </div>
+    </div>
   );
 }
   
