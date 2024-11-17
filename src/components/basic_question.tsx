@@ -1,13 +1,11 @@
 import "./basic_question.css";
-import React, { useState } from "react";
-//import { useAccordionButton } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+
+import React, { useState, useEffect } from "react";
+import { ProgressBar } from "react-bootstrap";
 import Dropdown from "react-bootstrap/Dropdown";
-//import { useNavigate } from "react-router-dom";
-//import 'bootstrap/dist/css/bootstrap.min.css';
-//import { useAccordionButton } from "react-bootstrap";
 
 // new added
-import { Button } from "react-bootstrap";
 type AnswerType = {
   personality: string[];
   taskOrganizing: string[];
@@ -20,6 +18,8 @@ type AnswerType = {
   workPlace: string[];
   introvertExtrovert: string;
 };
+//new newly added
+const totalQuestions = 10;
 
 function BasicQuestions() {
   // Separate state for each dropdown
@@ -35,7 +35,6 @@ function BasicQuestions() {
 
   //Newly added
   // Separate state for each dropdown and checkboxes
-
   const [answers, setAnswers] = useState<AnswerType>({
     personality: [],
     taskOrganizing: [],
@@ -48,6 +47,42 @@ function BasicQuestions() {
     workPlace: [],
     introvertExtrovert: "",
   });
+
+  // State to track completed questions
+  const [completedQuestions, setCompletedQuestions] = useState(0);
+
+  // Progress calculation
+  const calculateProgress = () => (completedQuestions / totalQuestions) * 100;
+
+  // Function to check if a question is answered
+  const updateCompletedQuestions = () => {
+    let count = 0;
+    for (const key in answers) {
+      if (
+        key !== "introvertExtrovert" &&
+        answers[key as keyof Omit<AnswerType, "introvertExtrovert">].length > 0
+      ) {
+        count++;
+      } else if (key === "introvertExtrovert" && answers.introvertExtrovert) {
+        count++;
+      }
+    }
+    setCompletedQuestions(count);
+  };
+
+  //console.log(completion.choices[0].message);
+  //local storage and API Key: key should be entered in by the user and will be stored in local storage (NOT session storage)
+
+  // const handleSelect = (eventKey: string | null) => {
+  //   if (eventKey) {
+  //     setSelectedOption(eventKey);
+
+  //   }
+  //   setCompletedQuestions(count);
+  // };
+
+  // Update the completed question count whenever answers change
+  useEffect(updateCompletedQuestions, [answers]);
 
   //arrays of answers of each question so the function can map through each of them.
   const personalities = [
@@ -165,7 +200,6 @@ function BasicQuestions() {
       };
     });
   };
-
   // Function to handle dropdown selection
   const handleSelect = (value: string | null) => {
     if (value) {
@@ -188,6 +222,7 @@ function BasicQuestions() {
     setIsChallenge(false);
     setIsDecision(false);
   };
+
   /*const handleSubmit = () => {
     console.log("Form Submitted!");
     resetAllDropdowns();  // Reset all dropdowns after submission
@@ -280,6 +315,10 @@ function BasicQuestions() {
         <h1>Basic Question</h1>
         <div className="question">
           {/* Personality Dropdown */}
+          <ProgressBar
+            now={calculateProgress()}
+            label={`${calculateProgress().toFixed(0)}%`}
+          />
           <label>Question 1</label>
           <div className="dropdown">
             <button
