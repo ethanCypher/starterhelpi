@@ -9,7 +9,6 @@ function Home() {
         {/* Or use a video tag for MP4 */}
         {<video src="./Pictures/Title.mp4" autoPlay loop muted />}
       </div>
-
       <Container>
         <Row>
           <Col>

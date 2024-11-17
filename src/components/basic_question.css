@@ -3,14 +3,26 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 20px;
   width: 80%;
   max-width: 1100px;
   background-color: #a1e3e5;
+  background-color: rgba(161, 227, 229, 0.7); /* Semi-transparent background */
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 200px;
   margin-top: 40px;
   margin-left: 400px;
+}
+
+.basic-container {
+  background-image: url("/public/Pictures/picture4.png"); /* Add your image path here */
+  background-size: cover; /* Ensures the image covers the entire container */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  min-height: 100vh; /* Full viewport height */
+  width: 100%;
+  position: cover; /* This helps with full coverage */
 }
 
 .question {
@@ -33,14 +45,17 @@
 }
 
 .dropdown-toggle {
-  width: 120%;
-  padding: 10px;
-  border: 1px solid #ccc;
   background-color: #f9f4f4;
   cursor: pointer;
-  border-radius: 6px;
   text-align: left;
-  position: relative;
+  position: center;
+  width: 230%;
+  margin-left: -65%;
+  min-height: 50px;
+  resize: vertical;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 .checkbox-group {
@@ -65,4 +80,33 @@
   display: block;
   margin-bottom: 3px;
   color: #1a1a1a;
+}
+
+/* Styling for submit button */
+.submit-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #1486d2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #1486d2;
+}
+/* Response container styling */
+.response-container {
+  width: 80%;
+  max-width: 800px;
+  background-color: #e9f7fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: -150px;
+  margin-bottom: 20px;
+  text-align: left;
 }

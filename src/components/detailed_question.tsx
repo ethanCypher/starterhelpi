@@ -61,7 +61,7 @@ function DetailedQuestions() {
   return (
     <div className="detailed-container">
       <div className="question-container">
-        <h1>Detailed Question Page</h1>
+        <h1>Detailed Question</h1>
         {[
           "What tasks or activities do you find most fulfilling?",
           "How do you prefer to interact with others in a work environment?",

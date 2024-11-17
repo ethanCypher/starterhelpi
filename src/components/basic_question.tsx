@@ -275,9 +275,9 @@ function BasicQuestions() {
   };
 
   return (
-    <div>
-      <h1>Basic Question</h1>
+    <div className="basic-container">
       <div className="main-container">
+        <h1>Basic Question</h1>
         <div className="question">
           {/* Personality Dropdown */}
           <label>Question 1</label>
@@ -510,12 +510,12 @@ function BasicQuestions() {
             )}
           </div>
         </div>
-        <Button onClick={submitAnswers} style={{ marginTop: "20px" }}>
+        <Button onClick={submitAnswers} className="submit-button">
           Submit for Assessment
         </Button>{" "}
         {/* Submit button */}
         {response && (
-          <div className="response" style={{ marginTop: "20px" }}>
+          <div className="response-container">
             {" "}
             {/* Response section */}
             <h2>Career Assessment Result</h2>

@@ -5,14 +5,12 @@
 .App-header {
   background-color: #33c6d3;
   min-height: 8vh;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(8% + 1vmin);
   color: white;
-  position: fixed;
 }
 .center_boxes {
   display: flex;
@@ -35,10 +33,9 @@
   justify-content: center;
   color: rgb(255, 255, 255);
   font-size: 12%;
-  position: fixed;
 
   /* Added properties */
-
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
@@ -48,12 +45,12 @@
   background-color: #ffffff;
   min-height: 100vh; /* Adjusted to fill the remaining space */
   padding: 0;
-  background-image: url("/public/Pictures/picture3.png"); /* Change to your image path */
+  background-image: url("/public/Pictures/Background_picture.png"); /* Change to your image path */
   /* background-size: cover; /* Cover the entire viewport */
   /* background-position: center; /* Center the image */
   /* Slim the image to the left */
-  background-size: 55% auto; /* Reduce the width to 30% of the container */
-  background-position: left center; /* Align the image to the left, centered vertically */
+  background-size: 55% 95%; /* Reduce the width to 30% of the container */
+  background-position: left top center; /* Align the image to the left, centered vertically */
 
   background-repeat: no-repeat; /* Prevent repetition */
   background-attachment: fixed;
