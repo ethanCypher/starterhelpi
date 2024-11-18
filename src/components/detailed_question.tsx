@@ -59,43 +59,45 @@ function DetailedQuestions() {
   };
 
   return (
-    <div className="detailed-container">
-      <div className="question-container">
-        <h1>Detailed Question</h1>
-        {[
-          "What tasks or activities do you find most fulfilling?",
-          "How do you prefer to interact with others in a work environment?",
-          "What are your strongest skills or talents?",
-          "Describe a work environment where you thrive.",
-          "What type of problems do you enjoy solving?",
-          "How important are salary, job security, work-life balance, and advancement opportunities?",
-          "What kind of contribution do you hope to make through your work?",
-          "Describe a past project or task that you felt extremely proud of.",
-          "What did you want to be growing up as a kid? Explain why.",
-        ].map((question, index) => (
-          <div key={index} className="question">
-            <label htmlFor={`question${index + 1}`}>
-              Question {index + 1}: {question}
-            </label>
-            <textarea
-              id={`question${index + 1}`}
-              name={`question${index + 1}`}
-              value={answers[index]}
-              onChange={(e) => handleInputChange(index, e.target.value)}
-            ></textarea>
-          </div>
-        ))}
-        <button onClick={submitAnswers} className="submit-button">
-          Submit for Assessment
-        </button>
-      </div>
-
-      {response && (
-        <div className="response-container">
-          <h2>Career Assessment Result</h2>
-          <p>{response}</p>
+    <div className="background-container">
+      <div className="detailed-container">
+        <div className="question-container">
+          <h1>Detailed Question</h1>
+          {[
+            "What tasks or activities do you find most fulfilling?",
+            "How do you prefer to interact with others in a work environment?",
+            "What are your strongest skills or talents?",
+            "Describe a work environment where you thrive.",
+            "What type of problems do you enjoy solving?",
+            "How important are salary, job security, work-life balance, and advancement opportunities?",
+            "What kind of contribution do you hope to make through your work?",
+            "Describe a past project or task that you felt extremely proud of.",
+            "What did you want to be growing up as a kid? Explain why.",
+          ].map((question, index) => (
+            <div key={index} className="question">
+              <label htmlFor={`question${index + 1}`}>
+                Question {index + 1}: {question}
+              </label>
+              <textarea
+                id={`question${index + 1}`}
+                name={`question${index + 1}`}
+                value={answers[index]}
+                onChange={(e) => handleInputChange(index, e.target.value)}
+              ></textarea>
+            </div>
+          ))}
+          <button onClick={submitAnswers} className="submit-button">
+            Submit for Assessment
+          </button>
         </div>
-      )}
+
+        {response && (
+          <div className="response-container">
+            <h2>Career Assessment Result</h2>
+            <p>{response}</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
