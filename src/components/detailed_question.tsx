@@ -42,7 +42,8 @@ function DetailedQuestions() {
               {
                 role: "system",
                 content:
-                  "You are a career advisor specializing in providing detailed assessments based on user responses. Give in-depth feedback and career guidance based on the answers provided.",
+                  "You are a career advisor specializing in career guidance based on user responses. Give a single career field and 3 career path suggestions based on the combination of the answers provided",
+                //"You are a career advisor specializing in providing detailed assessments based on user responses. Give brief feedback and career guidance based on the answers provided.",
               },
               ...messages,
             ],
@@ -58,9 +59,9 @@ function DetailedQuestions() {
   };
 
   return (
-    <div className="container">
+    <div className="detailed-container">
       <div className="question-container">
-        <h1>Detailed Question Page</h1>
+        <h1>Detailed Question</h1>
         {[
           "What tasks or activities do you find most fulfilling?",
           "How do you prefer to interact with others in a work environment?",

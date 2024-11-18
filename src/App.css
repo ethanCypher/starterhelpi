@@ -44,10 +44,21 @@
   background-color: #ffffff;
   min-height: 100vh;
   padding: 0;
+<<<<<<< HEAD
   background-image: url("/public/Pictures/Background_picture.png");
   background-size: 55% auto;
   background-position: left center;
   background-repeat: no-repeat;
+=======
+  background-image: url("/public/Pictures/Background_picture.png"); /* Change to your image path */
+  /* background-size: cover; /* Cover the entire viewport */
+  /* background-position: center; /* Center the image */
+  /* Slim the image to the left */
+  background-size: 55% 95%; /* Reduce the width to 30% of the container */
+  background-position: left top center; /* Align the image to the left, centered vertically */
+
+  background-repeat: no-repeat; /* Prevent repetition */
+>>>>>>> e4e722e24b5d9f4e2d149995bb3be3833854e50a
   background-attachment: fixed;
   position: relative;
 }
