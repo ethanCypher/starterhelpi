@@ -99,7 +99,7 @@
   background-color: #1486d2;
 }
 /* Response container styling */
-.response-container {
+.response1-container {
   width: 80%;
   max-width: 800px;
   background-color: #e9f7fa;
@@ -109,6 +109,18 @@
   margin-top: -150px;
   margin-bottom: 20px;
   text-align: left;
+  margin-left: 21%;
+}
+
+.response1-container h2 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.response1-container p {
+  font-size: 1em;
+  line-height: 1.5;
+  color: #333;
 }
 
 .custom-progress {

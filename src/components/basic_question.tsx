@@ -276,7 +276,7 @@ function BasicQuestions() {
           role: "user",
           content: `Question ${
             index + 1
-          }: ${responseText}. Please provide a detailed assessment of this response, including how it relates to potential career paths and advice on next steps.`,
+          }: ${responseText}. Please give a list of three career based on the user answers`,
         };
       });
 
@@ -294,7 +294,7 @@ function BasicQuestions() {
               {
                 role: "system",
                 content:
-                  "You are a career advisor specializing in providing detailed assessments based on user responses. Give in-depth feedback and career guidance based on the answers provided.",
+                  "You are a career advisor specializing in career guidance based on user responses. give me a list of three best career path based on the user response. the titles of each career should headings and the description of the career should be below the heading.",
               },
               ...messages,
             ],
@@ -303,7 +303,18 @@ function BasicQuestions() {
       );
 
       const data = await response.json();
-      setResponse(data.choices[0].message.content);
+      const rawResponse = data.choices[0].message.content;
+
+      // Process the GPT response into separate paragraphs
+      const formattedResponse = rawResponse
+        .split("\n") // Split response into lines
+        .filter((line: string) => line.trim() !== "") // Remove empty lines
+        .map(
+          (line: string, index: string) => `<p><strong>${line}</strong> </p>`
+        ) // Wrap each suggestion with a title
+        .join(""); // Combine into a single HTML string
+
+      setResponse(formattedResponse);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -552,16 +563,24 @@ function BasicQuestions() {
         <Button onClick={submitAnswers} className="submit-button">
           Submit for Assessment
         </Button>{" "}
-        {/* Submit button */}
-        {response && (
-          <div className="response-container">
+      </div>
+      {/* Submit button */}
+      {response && (
+        <>
+          <div className="response1-container">
             {" "}
             {/* Response section */}
             <h2>Career Assessment Result</h2>
-            <p>{response}</p>
+            <div dangerouslySetInnerHTML={{ __html: response }}></div>
           </div>
-        )}
-      </div>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+        </>
+      )}
     </div>
   );
 }
