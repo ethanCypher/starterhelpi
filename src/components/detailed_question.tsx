@@ -27,12 +27,7 @@ function DetailedQuestions() {
 
   // Function to check if a question is answered
   const updateCompletedQuestions = () => {
-    let count = 0;
-    for (const key in answers) {
-      if (key !== "") {
-        count++;
-      }
-    }
+    let count = answers.filter((answer) => answer.trim() !== "").length;
     setCompletedQuestions(count);
   };
 
