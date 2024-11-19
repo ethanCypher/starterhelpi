@@ -5,18 +5,20 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+}
+
+.background-container {
   background-image: url("/public/Pictures/picture4.png"); /* Add your image path here */
   background-size: cover; /* Ensures the image covers the entire container */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents the image from repeating */
   min-height: 100vh; /* Full viewport height */
-  width: 100%;
   position: cover; /* This helps with full coverage */
 }
 
 /* Question container styling */
 .question-container {
-  width: 80%;
+  width: 60%;
   max-width: 1100px;
   background-color: #a1e3e5;
   background-color: rgba(161, 227, 229, 0.7); /* Semi-transparent background */
