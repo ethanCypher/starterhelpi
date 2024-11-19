@@ -1,16 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./detailed_question.css";
+import { ProgressBar } from "react-bootstrap";
+
+const totalQuestions = 9;
 
 function DetailedQuestions() {
   const [answers, setAnswers] = useState<string[]>(Array(9).fill(""));
   const [response, setResponse] = useState<string>("");
+  //const [progressPercentage, setProgress] = useState<Number>(0);
 
   // Handles input change for each question
   const handleInputChange = (index: number, value: string) => {
     const newAnswers = [...answers];
     newAnswers[index] = value;
     setAnswers(newAnswers);
+    // const filledAnswers = newAnswers.filter(answer => answer.trim() !== "").length;
+    // const progressPercentage = Math.round((filledAnswers/newAnswers.length) * 100);
+    // setProgress(progressPercentage);
   };
+
+  // State to track completed questions
+  const [completedQuestions, setCompletedQuestions] = useState(0);
+
+  // Progress calculation
+  const calculateProgress = () => (completedQuestions / totalQuestions) * 100;
+
+  // Function to check if a question is answered
+  const updateCompletedQuestions = () => {
+    let count = 0;
+    for (const key in answers) {
+      if (key !== "") {
+        count++;
+      }
+    }
+    setCompletedQuestions(count);
+  };
+
+  // Update the completed question count whenever answers change
+  useEffect(updateCompletedQuestions, [answers]);
 
   // Function to call ChatGPT API
   const submitAnswers = async () => {
@@ -42,8 +69,7 @@ function DetailedQuestions() {
               {
                 role: "system",
                 content:
-                  "You are a career advisor specializing in career guidance based on user responses. Give a single career field and 3 career path suggestions based on the combination of the answers provided",
-                //"You are a career advisor specializing in providing detailed assessments based on user responses. Give brief feedback and career guidance based on the answers provided.",
+                  "You are a career advisor specializing in providing detailed assessments based on user responses. Give in-depth feedback and career guidance based on the answers provided.",
               },
               ...messages,
             ],
@@ -59,9 +85,17 @@ function DetailedQuestions() {
   };
 
   return (
-    <div className="detailed-container">
+    <div className="body">
+      {" "}
+      {/* Use your existing class name */}
       <div className="question-container">
-        <h1>Detailed Question</h1>
+        {" "}
+        {/* Use your existing class name */}
+        <h1>Detailed Question Page</h1>
+        <ProgressBar
+            now={calculateProgress()}
+            label={`${calculateProgress().toFixed(0)}%`}
+          />
         {[
           "What tasks or activities do you find most fulfilling?",
           "How do you prefer to interact with others in a work environment?",
@@ -85,13 +119,15 @@ function DetailedQuestions() {
             ></textarea>
           </div>
         ))}
-        <button onClick={submitAnswers} className="submit-button">
-          Submit for Assessment
-        </button>
       </div>
-
+      <button onClick={submitAnswers} style={{ marginTop: "20%" }}>
+        Submit for Assessment
+      </button>{" "}
+      {/* Submit button */}
       {response && (
-        <div className="response-container">
+        <div className="body" style={{ marginTop: "20px" }}>
+          {" "}
+          {/* Response section */}
           <h2>Career Assessment Result</h2>
           <p>{response}</p>
         </div>
