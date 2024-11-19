@@ -42,7 +42,7 @@ function DetailedQuestions() {
               {
                 role: "system",
                 content:
-                  "You are a career advisor specializing in career guidance based on user responses. Give a single career field and 3 career path suggestions based on the combination of the answers provided",
+                  "You are a career advisor specializing in career guidance based on user responses. give me a list of three best career path based on the user response. each one should be one paragraph and  the titles of each career should headings and the description of the career should be below the heading.",
                 //"You are a career advisor specializing in providing detailed assessments based on user responses. Give brief feedback and career guidance based on the answers provided.",
               },
               ...messages,
@@ -52,7 +52,18 @@ function DetailedQuestions() {
       );
 
       const data = await response.json();
-      setResponse(data.choices[0].message.content);
+      const rawResponse = data.choices[0].message.content;
+
+      // Process the GPT response into separate paragraphs
+      const formattedResponse = rawResponse
+        .split("\n") // Split response into lines
+        .filter((line: string) => line.trim() !== "") // Remove empty lines
+        .map(
+          (line: string, index: string) => `<p><strong>${line}</strong> </p>`
+        ) // Wrap each suggestion with a title
+        .join(""); // Combine into a single HTML string
+
+      setResponse(formattedResponse);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -92,10 +103,19 @@ function DetailedQuestions() {
         </div>
 
         {response && (
-          <div className="response-container">
-            <h2>Career Assessment Result</h2>
-            <p>{response}</p>
-          </div>
+          <>
+            <div className="response-container">
+              <h2>Career Assessment Result</h2>
+              <div dangerouslySetInnerHTML={{ __html: response }}></div>
+            </div>
+            <br></br>
+            <br></br>
+            <br></br>
+
+            <br></br>
+
+            <br></br>
+          </>
         )}
       </div>
     </div>
