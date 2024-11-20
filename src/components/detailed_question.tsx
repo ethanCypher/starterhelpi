@@ -5,6 +5,8 @@ function DetailedQuestions() {
   const [answers, setAnswers] = useState<string[]>(Array(9).fill(""));
   const [response, setResponse] = useState<string>("");
 
+  const [loading, setLoading] = useState<boolean>(false); // Loading state
+
   // Handles input change for each question
   const handleInputChange = (index: number, value: string) => {
     const newAnswers = [...answers];
@@ -19,6 +21,7 @@ function DetailedQuestions() {
       alert("Please enter your API key in the App.");
       return;
     }
+    setLoading(true); // Start loading
 
     try {
       const messages = answers.map((answer, index) => ({
@@ -66,6 +69,8 @@ function DetailedQuestions() {
       setResponse(formattedResponse);
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false); // Stop loading in all cases
     }
   };
 
@@ -102,20 +107,33 @@ function DetailedQuestions() {
           </button>
         </div>
 
-        {response && (
-          <>
-            <div className="response-container">
-              <h2>Career Assessment Result</h2>
-              <div dangerouslySetInnerHTML={{ __html: response }}></div>
-            </div>
-            <br></br>
-            <br></br>
-            <br></br>
+        {loading ? (
+          <div className="loading-container">
+            <p className="loading-text">
+              We’ve received your answers! Processing your response, please
+              wait...
+            </p>
+            <video autoPlay loop muted className="loading-video">
+              <source src="./Pictures/loading3.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        ) : (
+          response && (
+            <>
+              <div className="response-container">
+                <h2>Career Assessment Result</h2>
+                <div dangerouslySetInnerHTML={{ __html: response }}></div>
+              </div>
+              <br></br>
+              <br></br>
+              <br></br>
 
-            <br></br>
+              <br></br>
 
-            <br></br>
-          </>
+              <br></br>
+            </>
+          )
         )}
       </div>
     </div>

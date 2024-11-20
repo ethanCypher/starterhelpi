@@ -92,3 +92,37 @@ textarea {
   line-height: 1.5;
   color: #333;
 }
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Stack elements vertically */
+  height: 100vh;
+  position: relative; /* Establish a containing block for absolutely positioned children */
+}
+
+.loading-video {
+  width: 50%; /* Adjust size as needed */
+  height: auto;
+  border-radius: 10px;
+}
+
+.loading-text {
+  position: absolute;
+  top: 10%; /* Position text at the top */
+  transform: translateY(
+    -50%
+  ); /* Center the text vertically relative to the line */
+  font-size: 1.2em; /* Adjust font size */
+  color: #333; /* Adjust text color */
+  background-color: rgba(
+    161,
+    227,
+    229,
+    0.7
+  ); /* Optional: Semi-transparent background for readability */
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+}
