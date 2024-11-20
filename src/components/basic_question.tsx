@@ -54,6 +54,9 @@ function BasicQuestions() {
   // Progress calculation
   const calculateProgress = () => (completedQuestions / totalQuestions) * 100;
 
+  // Determine if the submit button should be disabled
+  const isSubmitDisabled = calculateProgress() < 100;
+
   // Function to check if a question is answered
   const updateCompletedQuestions = () => {
     let count = 0;
@@ -94,7 +97,6 @@ function BasicQuestions() {
     "The Achiever",
     "The Free Spirit",
     "The Analyst",
-    "None",
   ];
 
   const Tasks = [
@@ -103,7 +105,6 @@ function BasicQuestions() {
     "Not Very Organized",
     "Just Go with the Flow",
     "Organized Chaos",
-    "None",
   ];
 
   const environments = [
@@ -111,7 +112,6 @@ function BasicQuestions() {
     "Remote",
     "Out-door",
     "A mix of all",
-    "None",
   ];
 
   const motivations = [
@@ -122,7 +122,6 @@ function BasicQuestions() {
     "Working with a team",
     "Taking on challenges",
     "Earning rewards or recognition",
-    "None",
   ];
 
   const activities = [
@@ -134,7 +133,6 @@ function BasicQuestions() {
     "Working with numbers or data",
     "Cooking or preparing meals",
     "Playing sports or staying active",
-    "None",
   ];
 
   const challenges = [
@@ -142,7 +140,6 @@ function BasicQuestions() {
     "Meeting new people and networking",
     "Creating innovative solutions",
     "Managing multiple tasks at once",
-    "None",
   ];
 
   const decisions = [
@@ -150,7 +147,6 @@ function BasicQuestions() {
     "trust my instincts",
     "seek advice from others",
     "carefully think through all choices",
-    "None",
   ];
 
   const workplace = [
@@ -158,7 +154,6 @@ function BasicQuestions() {
     "Like to keep things the same",
     "Find it hard but try to adjust",
     "Do not like change and feel uneasy",
-    "None",
   ];
 
   const subjects = [
@@ -176,7 +171,6 @@ function BasicQuestions() {
     "Philosophy",
     "Music",
     "Physical Education",
-    "None of the above",
   ];
 
   //Newly added
@@ -276,7 +270,7 @@ function BasicQuestions() {
           role: "user",
           content: `Question ${
             index + 1
-          }: ${responseText}. Please provide a detailed assessment of this response, including how it relates to potential career paths and advice on next steps.`,
+          }: ${responseText}. Please give a list of three career based on the user answers`,
         };
       });
 
@@ -294,7 +288,7 @@ function BasicQuestions() {
               {
                 role: "system",
                 content:
-                  "You are a career advisor specializing in providing detailed assessments based on user responses. Give in-depth feedback and career guidance based on the answers provided.",
+                  "You are a career advisor specializing in career guidance based on user responses. give me a list of three best career path based on the user response. the titles of each career should headings and the description of the career should be below the heading.",
               },
               ...messages,
             ],
@@ -303,7 +297,18 @@ function BasicQuestions() {
       );
 
       const data = await response.json();
-      setResponse(data.choices[0].message.content);
+      const rawResponse = data.choices[0].message.content;
+
+      // Process the GPT response into separate paragraphs
+      const formattedResponse = rawResponse
+        .split("\n") // Split response into lines
+        .filter((line: string) => line.trim() !== "") // Remove empty lines
+        .map(
+          (line: string, index: string) => `<p><strong>${line}</strong> </p>`
+        ) // Wrap each suggestion with a title
+        .join(""); // Combine into a single HTML string
+
+      setResponse(formattedResponse);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -538,7 +543,6 @@ function BasicQuestions() {
                 <Dropdown.Item eventKey="Introvert">Introvert</Dropdown.Item>
                 <Dropdown.Item eventKey="Extrovert">Extrovert</Dropdown.Item>
                 <Dropdown.Item eventKey="Both">Both</Dropdown.Item>
-                <Dropdown.Item eventKey="None">None</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
 
@@ -549,19 +553,28 @@ function BasicQuestions() {
             )}
           </div>
         </div>
-        <Button onClick={submitAnswers} className="submit-button">
+        <Button onClick={submitAnswers} className="submit-button" disabled={isSubmitDisabled} // Disable button if progress < 100%
+        >
           Submit for Assessment
         </Button>{" "}
-        {/* Submit button */}
-        {response && (
-          <div className="response-container">
+      </div>
+      {/* Submit button */}
+      {response && (
+        <>
+          <div className="response1-container">
             {" "}
             {/* Response section */}
             <h2>Career Assessment Result</h2>
-            <p>{response}</p>
+            <div dangerouslySetInnerHTML={{ __html: response }}></div>
           </div>
-        )}
-      </div>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+        </>
+      )}
     </div>
   );
 }

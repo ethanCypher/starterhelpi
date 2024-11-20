@@ -73,60 +73,75 @@ function DetailedQuestions() {
       );
 
       const data = await response.json();
-      setResponse(data.choices[0].message.content);
+      const rawResponse = data.choices[0].message.content;
+
+      // Process the GPT response into separate paragraphs
+      const formattedResponse = rawResponse
+        .split("\n") // Split response into lines
+        .filter((line: string) => line.trim() !== "") // Remove empty lines
+        .map(
+          (line: string, index: string) => `<p><strong>${line}</strong> </p>`
+        ) // Wrap each suggestion with a title
+        .join(""); // Combine into a single HTML string
+
+      setResponse(formattedResponse);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
   return (
-    <div className="body">
-      {" "}
-      {/* Use your existing class name */}
-      <div className="question-container">
-        {" "}
-        {/* Use your existing class name */}
-        <h1>Detailed Question Page</h1>
-        <ProgressBar
+    <div className="background-container">
+      <div className="detailed-container">
+        <div className="question-container">
+          <h1>Detailed Question</h1>
+          <ProgressBar
             now={calculateProgress()}
             label={`${calculateProgress().toFixed(0)}%`}
           />
-        {[
-          "What tasks or activities do you find most fulfilling?",
-          "How do you prefer to interact with others in a work environment?",
-          "What are your strongest skills or talents?",
-          "Describe a work environment where you thrive.",
-          "What type of problems do you enjoy solving?",
-          "How important are salary, job security, work-life balance, and advancement opportunities?",
-          "What kind of contribution do you hope to make through your work?",
-          "Describe a past project or task that you felt extremely proud of.",
-          "What did you want to be growing up as a kid? Explain why.",
-        ].map((question, index) => (
-          <div key={index} className="question">
-            <label htmlFor={`question${index + 1}`}>
-              Question {index + 1}: {question}
-            </label>
-            <textarea
-              id={`question${index + 1}`}
-              name={`question${index + 1}`}
-              value={answers[index]}
-              onChange={(e) => handleInputChange(index, e.target.value)}
-            ></textarea>
-          </div>
-        ))}
-      </div>
-      <button onClick={submitAnswers} style={{ marginTop: "20%" }}>
-        Submit for Assessment
-      </button>{" "}
-      {/* Submit button */}
-      {response && (
-        <div className="body" style={{ marginTop: "20px" }}>
-          {" "}
-          {/* Response section */}
-          <h2>Career Assessment Result</h2>
-          <p>{response}</p>
+          {[
+            "What tasks or activities do you find most fulfilling?",
+            "How do you prefer to interact with others in a work environment?",
+            "What are your strongest skills or talents?",
+            "Describe a work environment where you thrive.",
+            "What type of problems do you enjoy solving?",
+            "How important are salary, job security, work-life balance, and advancement opportunities?",
+            "What kind of contribution do you hope to make through your work?",
+            "Describe a past project or task that you felt extremely proud of.",
+            "What did you want to be growing up as a kid? Explain why.",
+          ].map((question, index) => (
+            <div key={index} className="question">
+              <label htmlFor={`question${index + 1}`}>
+                Question {index + 1}: {question}
+              </label>
+              <textarea
+                id={`question${index + 1}`}
+                name={`question${index + 1}`}
+                value={answers[index]}
+                onChange={(e) => handleInputChange(index, e.target.value)}
+              ></textarea>
+            </div>
+          ))}
+          <button onClick={submitAnswers} className="submit-button">
+            Submit for Assessment
+          </button>
         </div>
-      )}
+        {response && (
+          <>
+            <div className="response-container">
+              <h2>Career Assessment Result</h2>
+              <div dangerouslySetInnerHTML={{ __html: response }}></div>
+            </div>
+            <br></br>
+            <br></br>
+            <br></br>
+
+            <br></br>
+
+            <br></br>
+          </>
+        )}
+      </div>
     </div>
   );
 }

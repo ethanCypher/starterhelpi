@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
-  width: 80%;
+  width: 60%;
   max-width: 1100px;
   background-color: #a1e3e5;
   background-color: rgba(161, 227, 229, 0.7); /* Semi-transparent background */
@@ -12,7 +12,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 200px;
   margin-top: 40px;
-  margin-left: 400px;
+  margin-left: 270px;
 }
 
 .basic-container {
@@ -49,8 +49,8 @@
   cursor: pointer;
   text-align: left;
   position: center;
-  width: 230%;
-  margin-left: -65%;
+  width: 180%;
+  margin-left: -40%;
   min-height: 50px;
   resize: vertical;
   padding: 8px;
@@ -99,7 +99,7 @@
   background-color: #1486d2;
 }
 /* Response container styling */
-.response-container {
+.response1-container {
   width: 80%;
   max-width: 800px;
   background-color: #e9f7fa;
@@ -109,6 +109,18 @@
   margin-top: -150px;
   margin-bottom: 20px;
   text-align: left;
+  margin-left: 21%;
+}
+
+.response1-container h2 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.response1-container p {
+  font-size: 1em;
+  line-height: 1.5;
+  color: #333;
 }
 
 .custom-progress {
