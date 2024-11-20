@@ -9,9 +9,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(8% + 1vmin);
+  font-size: clamp(14px, calc(8% + 1vmin), 24px);
   color: white;
 }
+
 .center_boxes {
   display: flex;
   align-content: center;
@@ -21,20 +22,18 @@
 .Home-button {
   position: absolute;
   background-color: #33c6d3;
-  top: 0%; /* Adjust to your desired position */
-  left: 2%; /* Use right: 10px; if you want it in the right corner */
+  top: 0;
+  left: 2%;
 }
 
 .App-footer {
   background-color: #33c6d3;
-  min-height: 5vh; /* Reduced footer height */
+  min-height: 5vh;
   display: flex;
   align-items: center;
   justify-content: center;
   color: rgb(255, 255, 255);
-  font-size: 12%;
-
-  /* Added properties */
+  font-size: clamp(12px, 12%, 16px);
   position: fixed;
   bottom: 0;
   left: 0;
@@ -43,7 +42,7 @@
 
 .App-body {
   background-color: #ffffff;
-  min-height: 100vh; /* Adjusted to fill the remaining space */
+  min-height: 100vh;
   padding: 0;
   background-image: url("/public/Pictures/Background_picture.png"); /* Change to your image path */
   /* background-size: cover; /* Cover the entire viewport */
@@ -54,6 +53,7 @@
 
   background-repeat: no-repeat; /* Prevent repetition */
   background-attachment: fixed;
+  position: relative;
 }
 
 .animated-title {
@@ -62,6 +62,7 @@
   margin-bottom: 20%;
   padding: 20%;
 }
+
 .animated-title video {
   max-width: 60%;
   height: 90vh;
@@ -71,15 +72,16 @@
 }
 
 .custom-button {
-  background-color: #33c6d3; /* Change to your desired color */
-  color: white; /* Change text color */
-  border: none; /* Remove border */
+  background-color: #33c6d3;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  transition: all 0.3s ease;
 }
 
 .custom-button:hover {
-  background-color: #08838e; /* Change color on hover */
-  /*transform: rotateY(10deg) translateZ(50%);*/
-  box-shadow: 0 15% 30% rgba(0, 0, 0, 0.5);
+  background-color: #08838e;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
 .Button-container {
@@ -88,21 +90,22 @@
   justify-content: space-around;
   align-items: center;
   background-color: white;
-  width: 50%; /* Fixed width */
-  height: 70%; /* Fixed height */
+  width: 50%;
+  height: 70%;
   padding: 10%;
   margin: 10%;
   position: relative;
-  left: 50%;
-  bottom: 130%;
+  left: 70%;
+  bottom: 150%;
   border-radius: 8%;
-  box-shadow: 0 4% 8% rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
+  transform: translate(-50%, 0);
 }
 
 .option:hover {
-  transform: rotateY(10deg) translateZ(20%);
-  box-shadow: 0 15% 30% rgba(0, 0, 0, 0.5);
+  transform: rotateY(10deg) translateZ(20px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
 }
 
 .Button-title {
@@ -114,4 +117,38 @@
   font-size: 1rem;
   color: #666;
   margin-bottom: 15%;
+}
+
+@media screen and (max-width: 1200px) {
+  .Button-container {
+    width: 50%;
+    height: auto;
+    min-height: 300px;
+    bottom: 100%;
+  }
+
+  .animated-title video {
+    margin-bottom: -30%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .App-body {
+    background-size: 75% auto;
+  }
+
+  .Button-container {
+    width: 70%;
+    bottom: 80%;
+    padding: 8%;
+  }
+
+  .animated-title {
+    margin-bottom: 30%;
+  }
+
+  .animated-title video {
+    max-width: 80%;
+    margin-bottom: -20%;
+  }
 }

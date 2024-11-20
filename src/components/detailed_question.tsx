@@ -1,16 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./detailed_question.css";
+import { ProgressBar } from "react-bootstrap";
+
+const totalQuestions = 9;
 
 function DetailedQuestions() {
   const [answers, setAnswers] = useState<string[]>(Array(9).fill(""));
   const [response, setResponse] = useState<string>("");
+  //const [progressPercentage, setProgress] = useState<Number>(0);
 
   // Handles input change for each question
   const handleInputChange = (index: number, value: string) => {
     const newAnswers = [...answers];
     newAnswers[index] = value;
     setAnswers(newAnswers);
+    // const filledAnswers = newAnswers.filter(answer => answer.trim() !== "").length;
+    // const progressPercentage = Math.round((filledAnswers/newAnswers.length) * 100);
+    // setProgress(progressPercentage);
   };
+
+  // State to track completed questions
+  const [completedQuestions, setCompletedQuestions] = useState(0);
+
+  // Progress calculation
+  const calculateProgress = () => (completedQuestions / totalQuestions) * 100;
+
+  // Function to check if a question is answered
+  const updateCompletedQuestions = () => {
+    let count = answers.filter((answer) => answer.trim() !== "").length;
+    setCompletedQuestions(count);
+  };
+
+  // Update the completed question count whenever answers change
+  useEffect(updateCompletedQuestions, [answers]);
 
   // Function to call ChatGPT API
   const submitAnswers = async () => {
@@ -42,8 +64,7 @@ function DetailedQuestions() {
               {
                 role: "system",
                 content:
-                  "You are a career advisor specializing in career guidance based on user responses. give me a list of three best career path based on the user response. each one should be one paragraph and  the titles of each career should headings and the description of the career should be below the heading.",
-                //"You are a career advisor specializing in providing detailed assessments based on user responses. Give brief feedback and career guidance based on the answers provided.",
+                  "You are a career advisor specializing in providing detailed assessments based on user responses. Give in-depth feedback and career guidance based on the answers provided.",
               },
               ...messages,
             ],
@@ -74,6 +95,10 @@ function DetailedQuestions() {
       <div className="detailed-container">
         <div className="question-container">
           <h1>Detailed Question</h1>
+          <ProgressBar
+            now={calculateProgress()}
+            label={`${calculateProgress().toFixed(0)}%`}
+          />
           {[
             "What tasks or activities do you find most fulfilling?",
             "How do you prefer to interact with others in a work environment?",
@@ -101,7 +126,6 @@ function DetailedQuestions() {
             Submit for Assessment
           </button>
         </div>
-
         {response && (
           <>
             <div className="response-container">
