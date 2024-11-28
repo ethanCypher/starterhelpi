@@ -326,11 +326,21 @@ function BasicQuestions() {
 
       // Process the GPT response into separate paragraphs
       const formattedResponse = rawResponse
-        .split("\n") // Split response into lines
-        .filter((line: string) => line.trim() !== "") // Remove empty lines
-        .map(
-          (line: string, index: string) => `<p><strong>${line}</strong> </p>`
-        ) // Wrap each suggestion with a title
+        .split("\n\n") // Split response into paragraphs (titles + descriptions are separated by double newlines)
+        .filter((paragraph: string) => paragraph.trim() !== "") // Remove empty paragraphs
+        .map((paragraph: string) => {
+          // Split the paragraph into title and description
+          const [title, ...descriptionParts] = paragraph.split("\n");
+          const cleanTitle = title.replace(/^###\s*/, ""); // Remove '###' and any leading spaces
+          const description = descriptionParts.join(" "); // Combine the remaining lines into the description
+          return `
+      <p>
+        <strong style="color: blue;">${cleanTitle.trim()}</strong>
+        <br>
+        ${description.trim()}
+      </p>
+    `;
+        })
         .join(""); // Combine into a single HTML string
 
       setResponse(formattedResponse);
