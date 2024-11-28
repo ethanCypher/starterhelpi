@@ -125,9 +125,10 @@
 
 .custom-progress {
   height: 25px;
-  background-color: #a8a11c;
+  background-color: #e7e5e5;
   border-radius: 5px;
-  border: 1px solid #87c619;
+  border: 1px solid #d3d1d1;
+  width: 100%;
 }
 .custom-progress-bar {
   background-color: #e15d5d; /* Custom color for the progress fill */
@@ -168,4 +169,28 @@
   padding: 10px 20px;
   border-radius: 5px;
   text-align: center;
+}
+
+.error-text {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.error-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.retry-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.retry-button:hover {
+  background-color: #0056b3;
 }

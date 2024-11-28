@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./detailed_question.css";
+import { ProgressBar } from "react-bootstrap";
+
+const totalQuestions = 9;
 
 function DetailedQuestions() {
   const [answers, setAnswers] = useState<string[]>(Array(9).fill(""));
   const [response, setResponse] = useState<string>("");
-
   const [loading, setLoading] = useState<boolean>(false); // Loading state
 
   // Handles input change for each question
@@ -14,15 +16,34 @@ function DetailedQuestions() {
     setAnswers(newAnswers);
   };
 
+  // State to track completed questions
+  const [completedQuestions, setCompletedQuestions] = useState(0);
+
+  // Progress calculation
+  const calculateProgress = () => (completedQuestions / totalQuestions) * 100;
+
+  // Function to check if a question is answered
+  const updateCompletedQuestions = () => {
+    let count = answers.filter((answer) => answer.trim() !== "").length;
+    setCompletedQuestions(count);
+  };
+
+  // Update the completed question count whenever answers change
+  useEffect(updateCompletedQuestions, [answers]);
+
+  // checking API key and displaying error message on the UI
+  const [error, setError] = useState<string | null>(null); // State to track errors
+
   // Function to call ChatGPT API
   const submitAnswers = async () => {
     const apiKey = JSON.parse(localStorage.getItem("MYKEY") || '""');
     if (!apiKey) {
-      alert("Please enter your API key in the App.");
+      setError("API key is missing. Please enter your API key in the App.");
+      //alert("Please enter your API key in the App.");
       return;
     }
     setLoading(true); // Start loading
-
+    setError(null); // Clear previous errors
     try {
       const messages = answers.map((answer, index) => ({
         role: "user",
@@ -54,7 +75,18 @@ function DetailedQuestions() {
         }
       );
 
+      // error handling
+      if (!response.ok) {
+        const errorMessage = `Error ${response.status}: ${response.statusText}`;
+        throw new Error(`Server error occurred: ${errorMessage}`);
+      }
+
       const data = await response.json();
+
+      if (!data.choices || data.choices.length === 0) {
+        setError("The API response is invalid. Please try again later.");
+        return;
+      }
       const rawResponse = data.choices[0].message.content;
 
       // Process the GPT response into separate paragraphs
@@ -67,8 +99,14 @@ function DetailedQuestions() {
         .join(""); // Combine into a single HTML string
 
       setResponse(formattedResponse);
-    } catch (error) {
-      console.error("Error fetching data:", error);
+    } catch (error: any) {
+      setError(
+        `We encountered an error: ${error.message}. Please try again later.`
+      );
+      //console.error("Error fetching data:", error);
+      //setResponse(
+      //  `<p class="error-text">We encountered an error: ${error.message}. Please try again later.</p>`
+      //);
     } finally {
       setLoading(false); // Stop loading in all cases
     }
@@ -79,6 +117,11 @@ function DetailedQuestions() {
       <div className="detailed-container">
         <div className="question-container">
           <h1>Detailed Question</h1>
+          <ProgressBar
+            className="custom1-progress"
+            now={calculateProgress()}
+            label={`${calculateProgress().toFixed(0)}%`}
+          />
           {[
             "What tasks or activities do you find most fulfilling?",
             "How do you prefer to interact with others in a work environment?",
@@ -107,34 +150,43 @@ function DetailedQuestions() {
           </button>
         </div>
 
-        {loading ? (
+        {error && (
+          <div className="error-container">
+            <p className="error-text">{error}</p>
+            <button onClick={submitAnswers} className="retry-button">
+              Retry
+            </button>
+          </div>
+        )}
+
+        {loading && (
           <div className="loading-container">
             <p className="loading-text">
               We’ve received your answers! Processing your response, please
               wait...
             </p>
             <video autoPlay loop muted className="loading-video">
-              <source src="./Pictures/loading3.mp4" type="video/mp4" />
+              <source src="./Pictures/butterfly.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
           </div>
-        ) : (
-          response && (
-            <>
-              <div className="response-container">
-                <h2>Career Assessment Result</h2>
-                <div dangerouslySetInnerHTML={{ __html: response }}></div>
-              </div>
-              <br></br>
-              <br></br>
-              <br></br>
-
-              <br></br>
-
-              <br></br>
-            </>
-          )
         )}
+
+        {!loading && !error && response && (
+          <div className="response-container">
+            <h2>Career Assessment Result</h2>
+            <div dangerouslySetInnerHTML={{ __html: response }}></div>
+          </div>
+        )}
+        <div>
+          <br></br>
+          <br></br>
+          <br></br>
+
+          <br></br>
+
+          <br></br>
+        </div>
       </div>
     </div>
   );
