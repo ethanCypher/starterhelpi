@@ -7,13 +7,19 @@ const totalQuestions = 9;
 function DetailedQuestions() {
   const [answers, setAnswers] = useState<string[]>(Array(9).fill(""));
   const [response, setResponse] = useState<string>("");
+
   const [loading, setLoading] = useState<boolean>(false); // Loading state
+
+  //const [progressPercentage, setProgress] = useState<Number>(0);
 
   // Handles input change for each question
   const handleInputChange = (index: number, value: string) => {
     const newAnswers = [...answers];
     newAnswers[index] = value;
     setAnswers(newAnswers);
+    // const filledAnswers = newAnswers.filter(answer => answer.trim() !== "").length;
+    // const progressPercentage = Math.round((filledAnswers/newAnswers.length) * 100);
+    // setProgress(progressPercentage);
   };
 
   // State to track completed questions
@@ -30,6 +36,7 @@ function DetailedQuestions() {
 
   // Update the completed question count whenever answers change
   useEffect(updateCompletedQuestions, [answers]);
+
 
   // checking API key and displaying error message on the UI
   const [error, setError] = useState<string | null>(null); // State to track errors
@@ -85,8 +92,7 @@ function DetailedQuestions() {
               {
                 role: "system",
                 content:
-                  "You are a career advisor specializing in career guidance based on user responses. give me a list of three best career path based on the user response. each one should be one paragraph and  the titles of each career should headings and the description of the career should be below the heading.",
-                //"You are a career advisor specializing in providing detailed assessments based on user responses. Give brief feedback and career guidance based on the answers provided.",
+                  "You are a career advisor specializing in providing detailed assessments based on user responses. Give in-depth feedback and career guidance based on the answers provided.",
               },
               ...messages,
             ],
@@ -147,7 +153,9 @@ function DetailedQuestions() {
         <div className="question-container">
           <h1>Detailed Question</h1>
           <ProgressBar
+
             className="custom1-progress"
+
             now={calculateProgress()}
             label={`${calculateProgress().toFixed(0)}%`}
           />
@@ -179,6 +187,7 @@ function DetailedQuestions() {
           </button>
         </div>
 
+
         {error && (
           <div className="error-container">
             <p className="error-text">{error}</p>
@@ -187,6 +196,7 @@ function DetailedQuestions() {
             </button> */}
           </div>
         )}
+
 
         {loading && (
           <div className="loading-container">
