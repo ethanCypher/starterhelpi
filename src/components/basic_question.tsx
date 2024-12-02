@@ -56,6 +56,9 @@ function BasicQuestions() {
   // Progress calculation
   const calculateProgress = () => (completedQuestions / totalQuestions) * 100;
 
+  // Determine if the submit button should be disabled
+  const isSubmitDisabled = calculateProgress() < 100;
+
   // Function to check if a question is answered
   const updateCompletedQuestions = () => {
     let count = 0;
@@ -595,7 +598,11 @@ function BasicQuestions() {
             )}
           </div>
         </div>
-        <Button onClick={submitAnswers} className="submit-button">
+        <Button
+          onClick={submitAnswers}
+          className="submit-button"
+          disabled={isSubmitDisabled} // Disable button if progress < 100%
+        >
           Submit for Assessment
         </Button>{" "}
       </div>
@@ -604,9 +611,9 @@ function BasicQuestions() {
       {error && (
         <div className="error-container">
           <p className="error-text">{error}</p>
-          <button onClick={submitAnswers} className="retry-button">
+          {/* <button onClick={submitAnswers} className="retry-button">
             Retry
-          </button>
+          </button> */}
         </div>
       )}
 

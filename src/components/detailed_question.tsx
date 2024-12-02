@@ -36,12 +36,31 @@ function DetailedQuestions() {
 
   // Function to call ChatGPT API
   const submitAnswers = async () => {
+    // Validate if all questions are answered
+    const isAllAnswered = answers.every((answer) => answer.trim() !== "");
+    if (!isAllAnswered) {
+      setError("Please answer all questions before submitting.");
+      return;
+    }
+
+    // Validate input quality (minimum word count, basic sanity checks)
+    const isValidInput = answers.every((answer) => {
+      const wordCount = answer.trim().split(/\s+/).length;
+      return wordCount >= 3; // Example: Require at least 3 words
+    });
+
+    if (!isValidInput) {
+      setError(
+        "Some answers are too short or do not make sense. Please provide more detailed and meaningful answers."
+      );
+      return;
+    }
     const apiKey = JSON.parse(localStorage.getItem("MYKEY") || '""');
     if (!apiKey) {
       setError("API key is missing. Please enter your API key in the App.");
-      //alert("Please enter your API key in the App.");
       return;
     }
+
     setLoading(true); // Start loading
     setError(null); // Clear previous errors
     try {
@@ -163,9 +182,9 @@ function DetailedQuestions() {
         {error && (
           <div className="error-container">
             <p className="error-text">{error}</p>
-            <button onClick={submitAnswers} className="retry-button">
+            {/* <button onClick={submitAnswers} className="retry-button">
               Retry
-            </button>
+            </button> */}
           </div>
         )}
 
