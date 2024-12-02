@@ -58,7 +58,7 @@
 
 .animated-title {
   display: flex;
-  justify-content: center;
+  justify-content: top;
   margin-bottom: 20%;
   padding: 20%;
 }
@@ -68,7 +68,7 @@
   height: 90vh;
   margin-left: 30%;
   margin-bottom: -50%;
-  margin-top: -40%;
+  margin-top: -41%;
 }
 
 .custom-button {
@@ -151,4 +151,9 @@
     max-width: 80%;
     margin-bottom: -20%;
   }
+}
+
+.form-inline {
+  display: flex;
+  align-items: center;
 }

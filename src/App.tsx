@@ -50,18 +50,18 @@ function App() {
         </div>
 
         <footer className="App-footer">
-          <Form>
-            <Form.Label>API Key:</Form.Label>
+          <Form className="form-inline">
             <Form.Control
               type="password"
               placeholder="Insert API Key Here"
               onChange={changeKey}
+              style={{ marginRight: "10px" }}
             ></Form.Control>
-            <br></br>
+            
             <Button
               variant="outline-light"
               size="lg"
-              className="mt-3"
+              className="py-1"
               onClick={handleSubmit}
             >
               Submit
