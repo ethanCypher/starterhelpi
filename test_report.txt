@@ -3,7 +3,7 @@
 > react-scripts test --coverage
 
 FAIL src/App.test.tsx
-  ✕ renders learn react link (52 ms)
+  ✕ renders learn react link (59 ms)
 
   ● renders learn react link
 
@@ -105,21 +105,16 @@ FAIL src/App.test.tsx
             [33mclass[39m=[32m"App-footer"[39m
           [36m>[39m
             [36m<form[39m
-              [33mclass[39m=[32m""[39m
+              [33mclass[39m=[32m"form-inline"[39m
             [36m>[39m
-              [36m<label[39m
-                [33mclass[39m=[32m"form-label"[39m
-              [36m>[39m
-                [0mAPI Key:[0m
-              [36m</label>[39m
               [36m<input[39m
                 [33mclass[39m=[32m"form-control"[39m
                 [33mplaceholder[39m=[32m"Insert API Key Here"[39m
+                [33mstyle[39m=[32m"margin-right: 10px;"[39m
                 [33mtype[39m=[32m"password"[39m
               [36m/>[39m
-              [36m<br />[39m
               [36m<button[39m
-                [33mclass[39m=[32m"mt-3 btn btn-outline-light btn-lg"[39m
+                [33mclass[39m=[32m"py-1 btn btn-outline-light btn-lg"[39m
                 [33mtype[39m=[32m"button"[39m
               [36m>[39m
                 [0mSubmit[0m
@@ -165,5 +160,5 @@ All files               |    4.62 |     1.21 |    3.22 |    4.87 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.847 s
+Time:        2.777 s
 Ran all test suites.
