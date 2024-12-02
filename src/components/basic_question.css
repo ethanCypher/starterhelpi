@@ -123,15 +123,46 @@
   color: #333;
 }
 
-.custom-progress {
-  height: 25px;
-  background-color: #a8a11c;
-  border-radius: 5px;
-  border: 1px solid #87c619;
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* Stack elements vertically */
+  height: 100vh;
+  position: relative; /* Establish a containing block for absolutely positioned children */
 }
-.custom-progress-bar {
-  background-color: #e15d5d; /* Custom color for the progress fill */
-  transition: width 0.4s ease;
+
+.loading-video {
+  width: 50%; /* Adjust size as needed */
+  height: auto;
+  border-radius: 10px;
+}
+
+.loading-text {
+  position: absolute;
+  top: 10%; /* Position text at the top */
+  transform: translateY(
+    -50%
+  ); /* Center the text vertically relative to the line */
+  font-size: 1.2em; /* Adjust font size */
+  color: #333; /* Adjust text color */
+  background-color: rgba(
+    161,
+    227,
+    229,
+    0.7
+  ); /* Optional: Semi-transparent background for readability */
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.error-text {
+  color: red;
   font-weight: bold;
-  color: rgba(220, 17, 17, 0.878);
+  margin-top: -200px;
+}
+
+.retry-button:hover {
+  background-color: #0056b3;
 }
