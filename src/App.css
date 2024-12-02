@@ -58,17 +58,17 @@
 
 .animated-title {
   display: flex;
-  justify-content: center;
+  justify-content: top;
   margin-bottom: 20%;
   padding: 20%;
 }
 
 .animated-title video {
-  max-width: 60%;
+  max-width: 50%;
   height: 90vh;
   margin-left: 30%;
   margin-bottom: -50%;
-  margin-top: -30%;
+  margin-top: -41%;
 }
 
 .custom-button {
@@ -96,7 +96,7 @@
   margin: 10%;
   position: relative;
   left: 70%;
-  bottom: 150%;
+  bottom: 200%;
   border-radius: 8%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -151,4 +151,9 @@
     max-width: 80%;
     margin-bottom: -20%;
   }
+}
+
+.form-inline {
+  display: flex;
+  align-items: center;
 }
