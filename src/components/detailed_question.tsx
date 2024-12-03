@@ -14,6 +14,9 @@ function DetailedQuestions() {
     const newAnswers = [...answers];
     newAnswers[index] = value;
     setAnswers(newAnswers);
+    // const filledAnswers = newAnswers.filter(answer => answer.trim() !== "").length;
+    // const progressPercentage = Math.round((filledAnswers/newAnswers.length) * 100);
+    // setProgress(progressPercentage);
   };
 
   // State to track completed questions
@@ -85,8 +88,7 @@ function DetailedQuestions() {
               {
                 role: "system",
                 content:
-                  "You are a career advisor specializing in career guidance based on user responses. give me a list of three best career path based on the user response. each one should be one paragraph and  the titles of each career should headings and the description of the career should be below the heading.",
-                //"You are a career advisor specializing in providing detailed assessments based on user responses. Give brief feedback and career guidance based on the answers provided.",
+                  "You are a career advisor specializing in providing detailed assessments based on user responses. Give in-depth feedback and career guidance based on the answers provided.",
               },
               ...messages,
             ],

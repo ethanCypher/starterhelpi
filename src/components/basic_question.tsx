@@ -99,7 +99,6 @@ function BasicQuestions() {
     "The Achiever",
     "The Free Spirit",
     "The Analyst",
-    "None",
   ];
 
   const Tasks = [
@@ -108,16 +107,9 @@ function BasicQuestions() {
     "Not Very Organized",
     "Just Go with the Flow",
     "Organized Chaos",
-    "None",
   ];
 
-  const environments = [
-    "Office-based",
-    "Remote",
-    "Out-door",
-    "A mix of all",
-    "None",
-  ];
+  const environments = ["Office-based", "Remote", "Out-door", "A mix of all"];
 
   const motivations = [
     "Learning new skills",
@@ -127,7 +119,6 @@ function BasicQuestions() {
     "Working with a team",
     "Taking on challenges",
     "Earning rewards or recognition",
-    "None",
   ];
 
   const activities = [
@@ -139,7 +130,6 @@ function BasicQuestions() {
     "Working with numbers or data",
     "Cooking or preparing meals",
     "Playing sports or staying active",
-    "None",
   ];
 
   const challenges = [
@@ -147,7 +137,6 @@ function BasicQuestions() {
     "Meeting new people and networking",
     "Creating innovative solutions",
     "Managing multiple tasks at once",
-    "None",
   ];
 
   const decisions = [
@@ -155,7 +144,6 @@ function BasicQuestions() {
     "trust my instincts",
     "seek advice from others",
     "carefully think through all choices",
-    "None",
   ];
 
   const workplace = [
@@ -163,7 +151,6 @@ function BasicQuestions() {
     "Like to keep things the same",
     "Find it hard but try to adjust",
     "Do not like change and feel uneasy",
-    "None",
   ];
 
   const subjects = [
@@ -181,7 +168,6 @@ function BasicQuestions() {
     "Philosophy",
     "Music",
     "Physical Education",
-    "None of the above",
   ];
 
   //Newly added
@@ -587,7 +573,6 @@ function BasicQuestions() {
                 <Dropdown.Item eventKey="Introvert">Introvert</Dropdown.Item>
                 <Dropdown.Item eventKey="Extrovert">Extrovert</Dropdown.Item>
                 <Dropdown.Item eventKey="Both">Both</Dropdown.Item>
-                <Dropdown.Item eventKey="None">None</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
 
