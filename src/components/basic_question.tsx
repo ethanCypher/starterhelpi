@@ -265,7 +265,7 @@ function BasicQuestions() {
           role: "user",
           content: `Question ${
             index + 1
-          }: ${responseText}. Please give a list of three career based on the user answers`,
+          }: ${responseText}. Please give a list of three career based on the user answers `,
         };
       });
 

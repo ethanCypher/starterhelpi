@@ -37,7 +37,6 @@ function DetailedQuestions() {
   // Update the completed question count whenever answers change
   useEffect(updateCompletedQuestions, [answers]);
 
-
   // checking API key and displaying error message on the UI
   const [error, setError] = useState<string | null>(null); // State to track errors
 
@@ -153,9 +152,7 @@ function DetailedQuestions() {
         <div className="question-container">
           <h1>Detailed Question</h1>
           <ProgressBar
-
             className="custom1-progress"
-
             now={calculateProgress()}
             label={`${calculateProgress().toFixed(0)}%`}
           />
@@ -187,7 +184,6 @@ function DetailedQuestions() {
           </button>
         </div>
 
-
         {error && (
           <div className="error-container">
             <p className="error-text">{error}</p>
@@ -197,14 +193,13 @@ function DetailedQuestions() {
           </div>
         )}
 
-
         {loading && (
           <div className="loading-container">
-            <p className="loading-text">
+            <p className="loading1-text">
               We’ve received your answers! Processing your response, please
               wait...
             </p>
-            <video autoPlay loop muted className="loading-video">
+            <video autoPlay loop muted className="loading1-video">
               <source src="./Pictures/butterfly.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
