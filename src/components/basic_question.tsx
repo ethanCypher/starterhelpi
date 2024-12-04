@@ -33,6 +33,11 @@ function BasicQuestions() {
   const [isDecision, setIsDecision] = useState(false);
   const [isWorkPlace, setIsWorkPlace] = useState(false);
 
+  const [loading, setLoading] = useState<boolean>(false); // Loading state
+
+  // checking API key and displaying error message on the UI
+  const [error, setError] = useState<string | null>(null); // State to track errors
+
   //Newly added
   // Separate state for each dropdown and checkboxes
   const [answers, setAnswers] = useState<AnswerType>({
@@ -47,8 +52,6 @@ function BasicQuestions() {
     workPlace: [],
     introvertExtrovert: "",
   });
-
-  const [loading, setLoading] = useState<boolean>(false); // Loading state
 
   // State to track completed questions
   const [completedQuestions, setCompletedQuestions] = useState(0);
@@ -109,12 +112,7 @@ function BasicQuestions() {
     "Organized Chaos",
   ];
 
-  const environments = [
-    "Office-based",
-    "Remote",
-    "Out-door",
-    "A mix of all",
-  ];
+  const environments = ["Office-based", "Remote", "Out-door", "A mix of all"];
 
   const motivations = [
     "Learning new skills",
@@ -252,20 +250,15 @@ function BasicQuestions() {
 
   const [response, setResponse] = useState<string>("");
 
-  // checking API key and displaying error message on the UI
-  const [error, setError] = useState<string | null>(null); // State to track errors
-
   // Function to call ChatGPT API
   const submitAnswers = async () => {
     const apiKey = JSON.parse(localStorage.getItem("MYKEY") || '""');
     if (!apiKey) {
       setError("API key is missing. Please enter your API key in the App.");
-      // alert("Please enter your API key in the App.");
       return;
     }
     setLoading(true); // Start loading
     setError(null); // Clear previous errors
-
     try {
       // Create messages based on the answers state
       const messages = Object.keys(answers).map((key, index) => {
@@ -278,7 +271,7 @@ function BasicQuestions() {
           role: "user",
           content: `Question ${
             index + 1
-          }: ${responseText}. Please give a list of three career based on the user answers`,
+          }: ${responseText}. Please give a list of three career based on the user answers `,
         };
       });
 
@@ -304,18 +297,7 @@ function BasicQuestions() {
         }
       );
 
-      // error handling
-      if (!response.ok) {
-        const errorMessage = `Error ${response.status}: ${response.statusText}`;
-        throw new Error(`Server error occurred: ${errorMessage}`);
-      }
-
       const data = await response.json();
-
-      if (!data.choices || data.choices.length === 0) {
-        setError("The API response is invalid. Please try again later.");
-        return;
-      }
       const rawResponse = data.choices[0].message.content;
 
       // Process the GPT response into separate paragraphs
@@ -338,12 +320,8 @@ function BasicQuestions() {
         .join(""); // Combine into a single HTML string
 
       setResponse(formattedResponse);
-    } catch (error: any) {
-      setError(
-        `We encountered an error: ${error.message}. Please try again later.`
-      );
-
-      // console.error("Error fetching data:", error);
+    } catch (error) {
+      console.error("Error fetching data:", error);
     } finally {
       setLoading(false); // Stop loading in all cases
     }
@@ -597,13 +575,12 @@ function BasicQuestions() {
         </Button>{" "}
       </div>
       {/* Submit button */}
-
       {error && (
         <div className="error-container">
           <p className="error-text">{error}</p>
           {/* <button onClick={submitAnswers} className="retry-button">
-            Retry
-          </button> */}
+              Retry
+            </button> */}
         </div>
       )}
 
