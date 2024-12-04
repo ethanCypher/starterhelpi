@@ -10,6 +10,9 @@ function DetailedQuestions() {
 
   const [loading, setLoading] = useState<boolean>(false); // Loading state
 
+  // adding newly for diabling the button 
+  const [submitted, setSubmitted] = useState<boolean>(false); // New state to track if button is clicked
+
   //const [progressPercentage, setProgress] = useState<Number>(0);
 
   // Handles input change for each question
@@ -69,6 +72,9 @@ function DetailedQuestions() {
 
     setLoading(true); // Start loading
     setError(null); // Clear previous errors
+    //adding newly for disabling the button
+    setSubmitted(true); // Disable the button after it's clicked
+
     try {
       const messages = answers.map((answer, index) => ({
         role: "user",
@@ -179,7 +185,8 @@ function DetailedQuestions() {
               ></textarea>
             </div>
           ))}
-          <button onClick={submitAnswers} className="submit-button">
+          <button onClick={submitAnswers} className="submit-button"  disabled={submitted} // Button disabled when submitted is true
+          >
             Submit for Assessment
           </button>
         </div>
