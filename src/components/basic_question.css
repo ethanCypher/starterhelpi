@@ -128,13 +128,13 @@
   justify-content: center;
   align-items: center;
   flex-direction: column; /* Stack elements vertically */
-  height: 100vh;
+  height: 100%;
   position: relative; /* Establish a containing block for absolutely positioned children */
 }
 
 .loading-video {
   width: 50%; /* Adjust size as needed */
-  height: auto;
+  height: 10%;
   border-radius: 10px;
 }
 
