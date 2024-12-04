@@ -62,6 +62,10 @@ function BasicQuestions() {
   // Determine if the submit button should be disabled
   const isSubmitDisabled = calculateProgress() < 100;
 
+  //adding it new for disabling the submit button
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+
+
   // Function to check if a question is answered
   const updateCompletedQuestions = () => {
     let count = 0;
@@ -259,6 +263,10 @@ function BasicQuestions() {
     }
     setLoading(true); // Start loading
     setError(null); // Clear previous errors
+  //adding it new for disabling the submit button
+    setIsSubmitted(true); // Disable the button after it's clicked
+
+
     try {
       // Create messages based on the answers state
       const messages = Object.keys(answers).map((key, index) => {
@@ -569,8 +577,8 @@ function BasicQuestions() {
         <Button
           onClick={submitAnswers}
           className="submit-button"
-          disabled={isSubmitDisabled} // Disable button if progress < 100%
-        >
+          disabled={isSubmitDisabled || isSubmitted} // Disable if progress < 100% or already submitted
+          >
           Submit for Assessment
         </Button>{" "}
       </div>
