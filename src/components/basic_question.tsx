@@ -48,8 +48,6 @@ function BasicQuestions() {
     introvertExtrovert: "",
   });
 
-  const [loading, setLoading] = useState<boolean>(false); // Loading state
-
   // State to track completed questions
   const [completedQuestions, setCompletedQuestions] = useState(0);
 
@@ -247,19 +245,13 @@ function BasicQuestions() {
 
   const [response, setResponse] = useState<string>("");
 
-  // checking API key and displaying error message on the UI
-  const [error, setError] = useState<string | null>(null); // State to track errors
-
   // Function to call ChatGPT API
   const submitAnswers = async () => {
     const apiKey = JSON.parse(localStorage.getItem("MYKEY") || '""');
     if (!apiKey) {
-      setError("API key is missing. Please enter your API key in the App.");
-      // alert("Please enter your API key in the App.");
+      alert("Please enter your API key in the App.");
       return;
     }
-    setLoading(true); // Start loading
-    setError(null); // Clear previous errors
 
     try {
       // Create messages based on the answers state
@@ -299,18 +291,7 @@ function BasicQuestions() {
         }
       );
 
-      // error handling
-      if (!response.ok) {
-        const errorMessage = `Error ${response.status}: ${response.statusText}`;
-        throw new Error(`Server error occurred: ${errorMessage}`);
-      }
-
       const data = await response.json();
-
-      if (!data.choices || data.choices.length === 0) {
-        setError("The API response is invalid. Please try again later.");
-        return;
-      }
       const rawResponse = data.choices[0].message.content;
 
       // Process the GPT response into separate paragraphs
@@ -333,14 +314,8 @@ function BasicQuestions() {
         .join(""); // Combine into a single HTML string
 
       setResponse(formattedResponse);
-    } catch (error: any) {
-      setError(
-        `We encountered an error: ${error.message}. Please try again later.`
-      );
-
-      // console.error("Error fetching data:", error);
-    } finally {
-      setLoading(false); // Stop loading in all cases
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
   };
 
@@ -592,43 +567,22 @@ function BasicQuestions() {
         </Button>{" "}
       </div>
       {/* Submit button */}
-
-      {error && (
-        <div className="error-container">
-          <p className="error-text">{error}</p>
-          {/* <button onClick={submitAnswers} className="retry-button">
-            Retry
-          </button> */}
-        </div>
+      {response && (
+        <>
+          <div className="response1-container">
+            {" "}
+            {/* Response section */}
+            <h2>Career Assessment Result</h2>
+            <div dangerouslySetInnerHTML={{ __html: response }}></div>
+          </div>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+        </>
       )}
-
-      {loading && (
-        <div className="loading-container">
-          <p className="loading-text">
-            We’ve received your answers! Processing your response, please
-            wait...
-          </p>
-          <video autoPlay loop muted className="loading-video">
-            <source src="./Pictures/butterfly.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      )}
-
-      {!loading && !error && response && (
-        <div className="response1-container">
-          <h2>Career Assessment Result</h2>
-          <div dangerouslySetInnerHTML={{ __html: response }}></div>
-        </div>
-      )}
-      <div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-      </div>
     </div>
   );
 }
