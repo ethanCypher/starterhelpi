@@ -7,7 +7,10 @@ const totalQuestions = 9;
 function DetailedQuestions() {
   const [answers, setAnswers] = useState<string[]>(Array(9).fill(""));
   const [response, setResponse] = useState<string>("");
+
   const [loading, setLoading] = useState<boolean>(false); // Loading state
+
+  //const [progressPercentage, setProgress] = useState<Number>(0);
 
   // Handles input change for each question
   const handleInputChange = (index: number, value: string) => {
@@ -192,11 +195,11 @@ function DetailedQuestions() {
 
         {loading && (
           <div className="loading-container">
-            <p className="loading-text">
+            <p className="loading1-text">
               We’ve received your answers! Processing your response, please
               wait...
             </p>
-            <video autoPlay loop muted className="loading-video">
+            <video autoPlay loop muted className="loading1-video">
               <source src="./Pictures/butterfly.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>

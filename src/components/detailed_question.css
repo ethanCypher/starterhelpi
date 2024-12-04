@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: 2%;
 }
 
 .background-container {
@@ -19,14 +19,13 @@
 /* Question container styling */
 .question-container {
   width: 60%;
-  max-width: 1100px;
   background-color: #a1e3e5;
   background-color: rgba(161, 227, 229, 0.7); /* Semi-transparent background */
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 200px;
-  margin-top: 40px;
+  border-radius: 1%;
+  padding: 3%;
+  box-shadow: 0 4% 8% rgba(0, 0, 0, 0.1);
+  margin-bottom: 5%;
+  margin-top: 1%;
 }
 
 /* Individual question styling */
@@ -44,22 +43,22 @@ label {
 
 textarea {
   width: 100%;
-  min-height: 50px;
+  min-height: 50%;
   resize: vertical;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 1%;
+  border: 100% solid #ccc;
+  border-radius: 2%;
 }
 
 /* Styling for submit button */
 .submit-button {
-  margin-top: 20px;
-  padding: 10px 20px;
+  margin-top: 5%;
+  padding: 1% 2%;
   font-size: 1em;
   background-color: #1486d2;
   color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 5%;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -71,20 +70,20 @@ textarea {
 /* Response container styling */
 .response-container {
   width: 80%;
-  max-width: 800px;
+  max-width: 59%;
   background-color: #e9f7fa;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-top: -150px;
-  margin-bottom: 20px;
+  border-radius: 1%;
+  padding: 3%;
+  box-shadow: 0 4% 8% rgba(0, 0, 0, 0.1);
+  margin-top: -3%;
+  margin-bottom: 5%;
   margin-left: 0%;
   text-align: left;
 }
 
 .response-container h2 {
   color: #007bff;
-  margin-bottom: 10px;
+  margin-bottom: 3%;
 }
 
 .response-container p {
@@ -102,14 +101,14 @@ textarea {
   position: relative; /* Establish a containing block for absolutely positioned children */
 }
 
-.loading-video {
+.loading1-video {
   width: 50%; /* Adjust size as needed */
   height: auto;
   border-radius: 10px;
-  margin-top: -50%;
+  margin-top: -45%;
 }
 
-.loading-text {
+.loading1-text {
   position: absolute;
   top: 10%; /* Position text at the top */
   transform: translateY(
@@ -126,18 +125,17 @@ textarea {
   padding: 10px 20px;
   border-radius: 5px;
   text-align: center;
-  margin-top: -11%;
+  margin-top: -8%;
 }
 
 .error-text {
   color: red;
   font-weight: bold;
-  margin-top: -200px;
+  margin-top: -55%;
 }
 
 .error-container {
   text-align: center;
-  margin-top: 20px;
 }
 
 .custom1-progress {
