@@ -194,7 +194,7 @@ function DetailedQuestions() {
         )}
 
         {loading && (
-          <div className="loading-container">
+          <div className="loading1-container">
             <p className="loading1-text">
               We’ve received your answers! Processing your response, please
               wait...
