@@ -6,9 +6,15 @@ const totalQuestions = 9;
 function DetailedQuestions() {
   const [answers, setAnswers] = useState<string[]>(Array(9).fill(""));
   const [response, setResponse] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [completedQuestions, setCompletedQuestions] = useState(0);
+
+  const [loading, setLoading] = useState<boolean>(false); // Loading state
+
+  // adding newly for diabling the button
+  const [submitted, setSubmitted] = useState<boolean>(false); // New state to track if button is clicked
+
+  //const [progressPercentage, setProgress] = useState<Number>(0);
 
   // Handles input change for each question
   const handleInputChange = (index: number, value: string) => {
@@ -77,8 +83,10 @@ function DetailedQuestions() {
       return;
     }
 
-    setLoading(true);
-    setError(null);
+    setLoading(true); // Start loading
+    setError(null); // Clear previous errors
+    //adding newly for disabling the button
+    setSubmitted(true); // Disable the button after it's clicked
 
     try {
       const messages = answers.map((answer, index) => ({
@@ -163,7 +171,11 @@ function DetailedQuestions() {
               ></textarea>
             </div>
           ))}
-          <button onClick={submitAnswers} className="submit-button">
+          <button
+            onClick={submitAnswers}
+            className="submit-button"
+            disabled={submitted} // Button disabled when submitted is true
+          >
             Submit for Assessment
           </button>
         </div>
