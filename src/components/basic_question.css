@@ -155,7 +155,7 @@
     0.7
   ); /* Optional: Semi-transparent background for readability */
 
-  border-radius: 5%;
+  border-radius: 0%;
   text-align: center;
   margin-top: -11%;
 }

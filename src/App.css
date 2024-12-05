@@ -35,8 +35,8 @@
   color: rgb(255, 255, 255);
   font-size: clamp(12%, 12%, 16%);
   position: fixed;
-  bottom: 0;
-  left: 0;
+  bottom: 0%;
+  left: 0%;
   width: 100%;
 }
 
@@ -50,7 +50,6 @@
   /* Slim the image to the left */
   background-size: 55% 95%; /* Reduce the width to 30% of the container */
   background-position: left top center; /* Align the image to the left, centered vertically */
-
   background-repeat: no-repeat; /* Prevent repetition */
   background-attachment: fixed;
   position: relative;
@@ -59,7 +58,7 @@
 .animated-title {
   display: flex;
   justify-content: top;
-  margin-bottom: 20%;
+  margin-bottom: -15%;
   padding: 20%;
 }
 
@@ -95,8 +94,7 @@
   padding: 10%;
   margin: 10%;
   position: relative;
-  left: 70%;
-  bottom: 200%;
+  left: 50%;
   border-radius: 8%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
