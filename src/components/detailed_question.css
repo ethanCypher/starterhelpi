@@ -123,7 +123,7 @@ textarea {
     0.7
   ); /* Optional: Semi-transparent background for readability */
   padding: 10px 20px;
-  border-radius: 5px;
+  border-radius: 0px;
   text-align: center;
   margin-top: -8%;
 }

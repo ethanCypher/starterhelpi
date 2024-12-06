@@ -62,6 +62,9 @@ function BasicQuestions() {
   // Determine if the submit button should be disabled
   const isSubmitDisabled = calculateProgress() < 100;
 
+  //adding it new for disabling the submit button
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+
   // Function to check if a question is answered
   const updateCompletedQuestions = () => {
     let count = 0;
@@ -250,7 +253,7 @@ function BasicQuestions() {
 
   const [response, setResponse] = useState<string>("");
 
-  // Function to call ChatGPT API
+  //Call ChatGPT API
   const submitAnswers = async () => {
     const apiKey = JSON.parse(localStorage.getItem("MYKEY") || '""');
     if (!apiKey) {
@@ -259,19 +262,20 @@ function BasicQuestions() {
     }
     setLoading(true); // Start loading
     setError(null); // Clear previous errors
+    //adding it new for disabling the submit button
+    setIsSubmitted(true); // Disable the button after it's clicked
+
     try {
-      // Create messages based on the answers state
       const messages = Object.keys(answers).map((key, index) => {
         const answerValue = answers[key as keyof AnswerType];
         const responseText = Array.isArray(answerValue)
-          ? answerValue.join(", ") // Join multiple values if it's an array
+          ? answerValue.join(", ")
           : answerValue;
-
         return {
           role: "user",
           content: `Question ${
             index + 1
-          }: ${responseText}. Please give a list of three career based on the user answers `,
+          }: ${responseText}. Please provide exactly three career suggestions based on ALL question responses. Consider all responses equally. in this format: **actual title of the career not the words**: Description`,
         };
       });
 
@@ -289,7 +293,7 @@ function BasicQuestions() {
               {
                 role: "system",
                 content:
-                  "You are a career advisor specializing in career guidance based on user responses. give me a list of three best career path based on the user response. the titles of each career should headings and the description of the career should be below the heading.",
+                  "You are a career advisor specializing in providing detailed assessments. Consider all responses equally. Respond with exactly three career suggestions in this format exactly. Do not change the format: **actual title of the career not the words**: Description (should be about three sentences in length)",
               },
               ...messages,
             ],
@@ -299,32 +303,34 @@ function BasicQuestions() {
 
       const data = await response.json();
       const rawResponse = data.choices[0].message.content;
-
-      // Process the GPT response into separate paragraphs
-      const formattedResponse = rawResponse
-        .split("\n\n") // Split response into paragraphs (titles + descriptions are separated by double newlines)
-        .filter((paragraph: string) => paragraph.trim() !== "") // Remove empty paragraphs
-        .map((paragraph: string) => {
-          // Split the paragraph into title and description
-          const [title, ...descriptionParts] = paragraph.split("\n");
-          const cleanTitle = title.replace(/^###\s*/, ""); // Remove '###' and any leading spaces
-          const description = descriptionParts.join(" "); // Combine the remaining lines into the description
-          return `
-      <p>
-        <strong style="color: blue;">${cleanTitle.trim()}</strong>
-        <br>
-        ${description.trim()}
-      </p>
-    `;
-        })
-        .join(""); // Combine into a single HTML string
-
-      setResponse(formattedResponse);
+      setResponse(formatResponse(rawResponse));
     } catch (error) {
-      console.error("Error fetching data:", error);
+      setError("Error fetching career suggestions. Please try again.");
     } finally {
-      setLoading(false); // Stop loading in all cases
+      setLoading(false);
     }
+  };
+
+  // Format GPT response
+  const formatResponse = (rawResponse: string) => {
+    const suggestions = rawResponse
+      .split("\n")
+      .filter((line) => line.trim() !== "")
+      .map((line) => {
+        const match = line.match(/\*\*(.+?)\*\*:?\s*(.+)/);
+        if (match) {
+          const title = match[1].trim();
+          const description = match[2].trim();
+          return `
+           <p>
+             <strong style="color: blue;">${title}</strong><br>
+             <span style="color: black;">${description}</span>
+           </p>`;
+        }
+        return "";
+      })
+      .join("");
+    return suggestions;
   };
 
   return (
@@ -569,7 +575,7 @@ function BasicQuestions() {
         <Button
           onClick={submitAnswers}
           className="submit-button"
-          disabled={isSubmitDisabled} // Disable button if progress < 100%
+          disabled={isSubmitDisabled || isSubmitted} // Disable if progress < 100% or already submitted
         >
           Submit for Assessment
         </Button>{" "}
