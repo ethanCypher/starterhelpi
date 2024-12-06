@@ -131,11 +131,12 @@ textarea {
 .error-text {
   color: red;
   font-weight: bold;
-  margin-top: -55%;
+  margin-top: -20%;
 }
 
 .error-container {
   text-align: center;
+  display: block;
 }
 
 .custom1-progress {
