@@ -16,7 +16,7 @@
 }
 
 .basic-container {
-  /*background-image: url("/public/Pictures/picture4.png"); /* Add your image path here */
+ background-image: url("/public/Pictures/picture4.png"); /* Add your image path here */
   background-size: cover; /* Ensures the image covers the entire container */
   background-position: center; /* Centers the image */
   background-repeat: no-repeat; /* Prevents the image from repeating */
