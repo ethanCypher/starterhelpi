@@ -35,11 +35,6 @@ function DetailedQuestions() {
   // Update question count whenever answers change
   useEffect(updateCompletedQuestions, [answers]);
 
-<<<<<<< HEAD
-
-  // checking API key and displaying error message on the UI
-  const [error, setError] = useState<string | null>(null); // State to track errors
-=======
   // Function to format GPT response consistently
   const formatResponse = (rawResponse: string) => {
     const suggestions = rawResponse
@@ -61,7 +56,6 @@ function DetailedQuestions() {
       .join("");
     return suggestions;
   };
->>>>>>> CHATGPT_design_brishna
 
   // Function to call ChatGPT API
   const submitAnswers = async () => {
@@ -116,11 +110,7 @@ function DetailedQuestions() {
               {
                 role: "system",
                 content:
-<<<<<<< HEAD
-                  "You are a career advisor specializing in providing detailed assessments based on user responses. Give in-depth feedback and career guidance that recommends 3 career options based on all of the responses provided. Use this format: \n\n### Title\nDescription. \n\nEach title should be a job name, and each description should explain why that job was selected.",
-=======
                   "You are a career advisor specializing in providing detailed assessments. Consider all responses equally. Respond with exactly three career suggestions in this format exactly. Do not change the format: **actual title of the career not the words**: Description (should be about three sentences in length)",
->>>>>>> CHATGPT_design_brishna
               },
               ...messages,
             ],
