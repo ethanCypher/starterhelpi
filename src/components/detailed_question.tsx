@@ -134,7 +134,7 @@ function DetailedQuestions() {
       const formattedResponse = formatResponse(rawResponse);
       setResponse(formattedResponse);
     } catch (error) {
-      setError(`We encountered an error! You are either missing your API key or your API key is invalid. 
+      setError(`Your API key or your API key is invalid. 
                 Please type your API key, and try again.`);
     } finally {
       setLoading(false);
@@ -147,9 +147,7 @@ function DetailedQuestions() {
         <div className="question-container">
           <h1>Detailed Questions</h1>
           <ProgressBar
-
             className="custom1-progress"
-
             now={calculateProgress()}
             label={`${calculateProgress().toFixed(0)}%`}
           />
@@ -185,13 +183,11 @@ function DetailedQuestions() {
           </button>
         </div>
 
-
         {error && (
           <div className="error-container">
             <p className="error-text">{error}</p>
           </div>
         )}
-
 
         {loading && (
           <div className="loading-container">
