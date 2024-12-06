@@ -306,7 +306,7 @@ function BasicQuestions() {
       setResponse(formatResponse(rawResponse));
     } catch (error) {
       setError(
-        "We encountered an error! You are either missing your API key or your API key is invalid. Please type your API key, and try again."
+        "Your API key is invalid. Please type your API key, and try again."
       );
     } finally {
       setLoading(false);
