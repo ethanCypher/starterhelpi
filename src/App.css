@@ -58,14 +58,14 @@
 .animated-title {
   display: flex;
   justify-content: top;
-  margin-bottom: -15%;
+  margin-bottom: -20%;
   padding: 20%;
 }
 
 .animated-title video {
   max-width: 50%;
   height: 90vh;
-  margin-left: 30%;
+  margin-left: 40%;
   margin-bottom: -50%;
   margin-top: -41%;
 }
@@ -94,7 +94,7 @@
   padding: 10%;
   margin: 10%;
   position: relative;
-  left: 50%;
+  left: 70%;
   border-radius: 8%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;

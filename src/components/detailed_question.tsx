@@ -144,7 +144,9 @@ function DetailedQuestions() {
         <div className="question-container">
           <h1>Detailed Questions</h1>
           <ProgressBar
+
             className="custom1-progress"
+
             now={calculateProgress()}
             label={`${calculateProgress().toFixed(0)}%`}
           />
@@ -180,19 +182,21 @@ function DetailedQuestions() {
           </button>
         </div>
 
+
         {error && (
           <div className="error-container">
             <p className="error-text">{error}</p>
           </div>
         )}
 
+
         {loading && (
-          <div className="loading1-container">
-            <p className="loading1-text">
+          <div className="loading-container">
+            <p className="loading-text">
               We’ve received your answers! Processing your response, please
               wait...
             </p>
-            <video autoPlay loop muted className="loading1-video">
+            <video autoPlay loop muted className="loading-video">
               <source src="./Pictures/butterfly.mp4" type="video/mp4" />
               Your browser does not support the video tag.
             </video>
