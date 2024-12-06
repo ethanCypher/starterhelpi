@@ -79,7 +79,9 @@ function DetailedQuestions() {
 
     const apiKey = JSON.parse(localStorage.getItem("MYKEY") || '""');
     if (!apiKey) {
+      console.log(error);
       setError("API key is missing. Please enter your API key in the App.");
+      console.log(error);
       return;
     }
 
@@ -131,8 +133,9 @@ function DetailedQuestions() {
       const rawResponse = data.choices[0].message.content;
       const formattedResponse = formatResponse(rawResponse);
       setResponse(formattedResponse);
-    } catch (error: any) {
-      setError(`We encountered an error: ${error.message}. Please try again.`);
+    } catch (error) {
+      setError(`We encountered an error! You are either missing your API key or your API key is invalid. 
+                Please type your API key, and try again.`);
     } finally {
       setLoading(false);
     }

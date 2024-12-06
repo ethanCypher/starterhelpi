@@ -305,7 +305,9 @@ function BasicQuestions() {
       const rawResponse = data.choices[0].message.content;
       setResponse(formatResponse(rawResponse));
     } catch (error) {
-      setError("Error fetching career suggestions. Please try again.");
+      setError(
+        "We encountered an error! You are either missing your API key or your API key is invalid. Please type your API key, and try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -567,7 +569,7 @@ function BasicQuestions() {
 
             {answers.introvertExtrovert && (
               <div style={{ marginTop: "5%", width: "120%" }}>
-                <strong>Selected Option:</strong> {answers.introvertExtrovert}
+                {/* <strong>Selected Option:</strong> {answers.introvertExtrovert} */}
               </div>
             )}
           </div>
