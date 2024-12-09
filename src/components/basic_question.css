@@ -137,7 +137,7 @@
   width: 50%; /* Adjust size as needed */
   height: auto;
   border-radius: 5%;
-  margin-top: -50%;
+  margin-top: -7%;
 }
 
 .loading-text {
@@ -157,5 +157,5 @@
 
   border-radius: 0%;
   text-align: center;
-  margin-top: -11%;
+  margin-top: -7%;
 }

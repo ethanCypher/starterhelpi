@@ -105,7 +105,7 @@ textarea {
   width: 50%; /* Adjust size as needed */
   height: auto;
   border-radius: 10px;
-  margin-top: -45%;
+  margin-top: -40%;
 }
 
 .loading1-text {
@@ -125,7 +125,7 @@ textarea {
   padding: 10px 20px;
   border-radius: 0px;
   text-align: center;
-  margin-top: -8%;
+  margin-top: -7%;
 }
 
 .error-text {
